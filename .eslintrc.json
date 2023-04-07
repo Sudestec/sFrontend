@@ -13,6 +13,7 @@
     },
     "rules": {
         "no-unused-vars":"off",
+        "no-multi-spaces":"error",
         "indent": [
             "error",
             2
