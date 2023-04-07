@@ -1,0 +1,23 @@
+{
+  "name": "sudestec",
+  "version": "0.0.1",
+  "description": "API Frontend Manager",
+  "type": "module",
+  "scripts": {
+    "start": "vite",
+    "dev": "vite --host",
+    "build": "vite build",
+    "serve": "vite preview  --host"
+  },
+  "license": "MIT",
+  "devDependencies": {
+    "eslint": "^8.37.0",
+    "eslint-plugin-solid": "^0.12.0",
+    "vite": "^4.1.1",
+    "vite-plugin-solid": "^2.5.0"
+  },
+  "dependencies": {
+    "pocketbase": "^0.13.1",
+    "solid-js": "^1.6.10"
+  }
+}
