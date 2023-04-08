@@ -1,6 +1,6 @@
 {
   "name": "sudestec",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "API Frontend Manager",
   "type": "module",
   "scripts": {
