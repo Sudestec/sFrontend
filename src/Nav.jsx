@@ -1,5 +1,6 @@
-import Profile from './Profile';
+import Profile from './modules/Profile';
 import logo from './assets/nav-logo.svg';
+import Collections from './modules/Collections';
 
 function Logo() {
 
@@ -19,7 +20,10 @@ function Nav() {
   return (
     <nav class='container'>
       <Logo />
-      <Profile />
+      <ul>
+        <Collections/>
+        <Profile />
+      </ul>
     </nav>
   );
 }

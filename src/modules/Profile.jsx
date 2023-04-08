@@ -1,7 +1,7 @@
 /* eslint-disable no-unused-vars */
 import { createSignal, Show } from 'solid-js';
 
-import { usePocket } from './PocketContext';
+import { usePocket } from '../PocketContext';
 
 function Login() {
   const [email, setEmail] = createSignal('');
@@ -33,10 +33,7 @@ function Profile() {
 
   return (
     <Show when={auth()} fallback={<Login/>} >
-      <ul>
-        <li><span>{auth().admin.email}</span></li>
-        <li><button onClick={() => {setAuth(false),localStorage.removeItem('pocketbase_auth');}} role="button">Logout</button></li>
-      </ul>
+      <li><button onClick={() => {setAuth(false),localStorage.removeItem('pocketbase_auth');}} role="button"><i class="fa-solid fa-right-to-bracket" /></button></li>
     </Show>
   );
 

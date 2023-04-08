@@ -3,6 +3,8 @@ import { render } from 'solid-js/web';
 
 import './index.css';
 import App from './App';
+import { PocketProvider } from './PocketContext';
+
 
 if (import.meta.env.DEV && !(document.getElementById('root') instanceof HTMLElement)) {
   throw new Error(
@@ -11,5 +13,7 @@ if (import.meta.env.DEV && !(document.getElementById('root') instanceof HTMLElem
 }
 
 render(() => (
-  <App />
+  <PocketProvider>
+    <App />
+  </PocketProvider>
 ), document.getElementById('root'));
