@@ -12,18 +12,15 @@ function Login() {
 
   return (
     <dialog open>
-      <div>
-        <article>
-          <hgroup>
-            <h2>Welcome</h2>
-            <small>Please sign in:</small>
-          </hgroup>
-          <input type="email" placeholder="Email" value={email()} onInput={(e) => setEmail(e.target.value)} />
-          <input type="password" placeholder="Password" value={password()} onInput={(e) => setPassword(e.target.value)} />
-          <button onClick={() => getAuthorization(email(),password())}>Log in</button>
-        </article>
-
-      </div>
+      <article>
+        <hgroup>
+          <h2>Welcome</h2>
+          <small>Please sign in:</small>
+        </hgroup>
+        <input type="email" placeholder="Email" value={email()} onInput={(e) => setEmail(e.target.value)} />
+        <input type="password" placeholder="Password" value={password()} onInput={(e) => setPassword(e.target.value)} />
+        <button onClick={() => getAuthorization(email(),password())}>Log in</button>
+      </article>
     </dialog>
   );
 }

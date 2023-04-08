@@ -1,19 +1,32 @@
-import { createSignal, Show } from 'solid-js';
+import { createResource, createSignal, Show, Index } from 'solid-js';
+import pb from './pbConnection';
 
 const [ open, setStatus ] = createSignal(false);
+const fetchCollections = async () => await pb.collections.getFullList({ sort: '-created' });
+
 function CollectionsWindow() {
+  const [collections] = createResource(fetchCollections);
+  
+  
   return (
     <dialog open>
-      <div>
-        <article>
-          <hgroup>
-            <h2>Collections</h2>
-            <small>List:</small>
-          </hgroup>
-          <p>Lorem ipsum dolor sit, amet consectetur adipisicing elit. Dicta repudiandae mollitia veritatis. Nobis quo repellendus eligendi atque, exercitationem quasi neque rerum assumenda nulla quia quae magnam tempore aperiam, dolor ad!</p>
-          <button onClick={() => setStatus(!open())} role="button">Close</button>
-        </article>
-      </div>
+      <article>
+        <header>
+          <h2>Collections</h2>
+        </header>
+        <figure>
+          <table role="grid">
+            <Index each={collections()}>{(collection, i) =>
+              <tr>
+                <th scope="row">{collection().name}</th>
+                <td>{collection().id}</td>
+                <td>{collection().updated}</td>
+              </tr>
+            }</Index>
+          </table>
+        </figure>
+        <button onClick={() => setStatus(!open())} role="button">Close</button>
+      </article>
     </dialog>
   );
 }
