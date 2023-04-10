@@ -8,11 +8,11 @@ import { usePocket } from './PocketContext';
 
 
 function App() {
-  const [authStore] = usePocket();
+  const [auth] = usePocket();
 
 
   return (
-    <Show when={authStore()} fallback={<Profile />}>
+    <Show when={auth()} fallback={<Profile />}>
       <Nav/>
       <Header/>
       <Main/>

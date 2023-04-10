@@ -6,12 +6,12 @@ import { usePocket } from '../PocketContext';
 function Login() {
   const [email, setEmail] = createSignal('');
   const [password, setPassword] = createSignal('');
-  const [authStore, getAuthorization] = usePocket();
+  const [auth, getAuthorization] = usePocket();
 
   return (
     <dialog open>
       <article>
-        <Show when={authStore.state === 'ready'} fallback={<span aria-busy="true">Loading...</span>}>
+        <Show when={auth.state !== 'pending'} fallback={<span aria-busy="true">Loading...</span>}>
 
           <hgroup>
             <h2>Welcome</h2>
@@ -27,10 +27,10 @@ function Login() {
 }
 
 function Profile() {
-  const [authStore, getAuthorization, clearAuthorization] = usePocket();
+  const [auth, getAuthorization, clearAuthorization] = usePocket();
 
   return (
-    <Show when={authStore()} fallback={<Login/>} >
+    <Show when={auth()} fallback={<Login/>} >
       <li><button onClick={() => {clearAuthorization();}} role="button"><i class="fa-solid fa-right-to-bracket" /></button></li>
     </Show>
   );
