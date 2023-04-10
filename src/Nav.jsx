@@ -1,6 +1,7 @@
-import Profile from './modules/Profile';
 import logo from './assets/nav-logo.svg';
-import Collections from './modules/Collections';
+import Profile from './components/Profile';
+import Collections from './components/Collections';
+import Jobs from './components/Jobs';
 
 function Logo() {
 
@@ -21,6 +22,7 @@ function Nav() {
     <nav class='container'>
       <Logo />
       <ul>
+        <Jobs />
         <Collections/>
         <Profile />
       </ul>

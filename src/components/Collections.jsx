@@ -1,5 +1,5 @@
 import { createResource, createSignal, Show, Index } from 'solid-js';
-import pb from './pbConnection';
+import pb from '../modules/pbConnection';
 
 const [ open, setStatus ] = createSignal(false);
 const fetchCollections = async () => await pb.collections.getFullList({ sort: '-created' });
@@ -11,12 +11,10 @@ function CollectionsWindow() {
   return (
     <dialog open>
       <article>
-        <header>
-          <h2>Collections</h2>
-        </header>
+        <h2>Collections</h2>
         <figure>
           <table role="grid">
-            <Index each={collections()}>{(collection, i) =>
+            <Index each={collections()} fallback={<span aria-busy="true">Loading...</span>}>{(collection, i) =>
               <tr>
                 <th scope="row">{collection().name}</th>
                 <td>{collection().id}</td>

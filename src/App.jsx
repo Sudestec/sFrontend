@@ -3,23 +3,21 @@ import Nav from './Nav';
 import Header from './Header';
 import Main from './Main';
 import Footer from './Footer';
-import Profile from './modules/Profile';
+import Profile from './components/Profile';
 import { usePocket } from './PocketContext';
 
 
 function App() {
-  const [auth, setAuth, getAuthorization ] = usePocket();
+  const [authStore] = usePocket();
 
 
   return (
-    <>
-      <Show when={auth()} fallback={<Profile />}>
-        <Nav/>
-        <Header/>
-        <Main/>
-        <Footer/>
-      </Show>
-    </>
+    <Show when={authStore()} fallback={<Profile />}>
+      <Nav/>
+      <Header/>
+      <Main/>
+      <Footer/>
+    </Show>
   );
 }
 

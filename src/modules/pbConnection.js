@@ -1,5 +1,5 @@
 import PocketBase from 'pocketbase';
 
-const pb = new PocketBase('http://192.168.1.141:7790');
+const pb = new PocketBase('https://api.sudeste.ar');
 
 export default pb;
