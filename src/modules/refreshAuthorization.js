@@ -1,24 +1,20 @@
+const refreshAuthorization = async (api, token) => {
+  const url = api+'/api/admins/auth-refresh',
+    refreshHeaders = new Headers();
+  refreshHeaders.append('Authorization', `Bearer ${token}`);
 
-
-
-export default async function refreshAuthorization(api, token) {
-  const url = api+'/api/admins/auth-refresh';
+  const requestOptions = {
+      method: 'POST',
+      headers: refreshHeaders,
+      redirect: 'follow'
+    },
+    data = await fetch(url, requestOptions),
+    jsonData = await data.json();
+  if (data.status !== 200) {
+    return 4;
+  } else {
+    localStorage.setItem('login_data', JSON.stringify(jsonData));
+    return 3;
+  }};
   
-  if (!token && localStorage.getItem('pocketbase_auth')) {
-    const localData = JSON.parse(localStorage.getItem('pocketbase_auth'));
-    if (localData.token) {
-      const token = localData.token;
-      const refreshHeaders = new Headers();
-      refreshHeaders.append('Authorization', `Bearer ${token}`);
-    
-      const requestOptions = {
-        method: 'POST',
-        headers: refreshHeaders,
-        redirect: 'follow'
-      };
-      const data = await fetch(url, requestOptions);
-      const jsonData = await data.json();
-      return jsonData;
-    }}}
-
-console.log(refreshAuthorization('https://api.sudeste.ar'));
+export default refreshAuthorization;

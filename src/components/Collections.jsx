@@ -7,7 +7,6 @@ const fetchCollections = async () => await pb.collections.getFullList({ sort: '-
 function CollectionsWindow() {
   const [collections] = createResource(fetchCollections);
   
-  
   return (
     <dialog open>
       <article>

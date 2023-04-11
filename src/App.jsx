@@ -1,18 +1,18 @@
-import { Show } from 'solid-js';
-import Nav from './Nav';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
-import Profile from './components/Profile';
+import { lazy, Show } from 'solid-js';
+const Nav = lazy(() => import('./Nav'));
+const Header = lazy(() => import('./Header'));
+const Main = lazy(() => import('./Main'));
+const Footer = lazy(() => import('./Footer'));
+const Profile = lazy(() => import('./components/Profile'));
 import { usePocket } from './PocketContext';
 
 
 function App() {
-  const [auth] = usePocket();
+  const [login] = usePocket();
 
 
   return (
-    <Show when={auth()} fallback={<Profile />}>
+    <Show when={login() === 3} fallback={<Profile />}>
       <Nav/>
       <Header/>
       <Main/>

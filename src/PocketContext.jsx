@@ -1,28 +1,37 @@
-import { createContext, useContext, createResource, createEffect, createSignal } from 'solid-js';
-import pb from './modules/pbConnection';
+import { createContext, useContext, createResource, createSignal, onMount, createEffect } from 'solid-js';
+import { url } from './modules/pbConnection';
+import refreshAuthorization from './modules/refreshAuthorization';
+import logIn from './modules/logIn';
 
 export const PocketContext = createContext();
 
 async function refreshAuth (source, value) {
-  if (localStorage.getItem('pocketbase_auth') && source)
-    return await pb.admins.authRefresh();
-}
+  if (source === 1 ) {
+    const localData = JSON.parse(localStorage.getItem('login_data'));
+    return await refreshAuthorization(url, localData.token);
+  }}
+
+// login maneja states {1: 'refetch', 2: 'loading', 3: 'OK', 4: 'error'}
 
 export function PocketProvider(props) {
-  const [auth, { mutate, refetch }] = createResource(refreshAuth),
+  const [ login, setLogin ] = createSignal(),
+    [ auth ,{ mutate, refetch } ] = createResource(login, refreshAuth),
     getAuthorization = async (username, password) => {
-      mutate(await pb.admins.authWithPassword(username, password));
+      setLogin(2);
+      setLogin(await logIn(url, username, password));
     },
-    clearAuthorization = () => (pb.authStore.clear(),mutate(false)),
+    clearAuthorization = () => (localStorage.clear(),setLogin(1)),
     authData = [
-      auth,
+      login,
       getAuthorization,
       clearAuthorization,
     ];
-  
-  createEffect(e => {
-    console.log(auth.latest);
-    //if (!auth() && localStorage.getItem('pocketbase_auth')) refreshAuth();
+
+  onMount( () => {
+    if (localStorage.getItem('login_data')) {
+      setLogin(2);
+      refreshAuth(1).then( e => setLogin(e));
+    } else (setLogin(1),localStorage.clear());
   });
 
   return (
