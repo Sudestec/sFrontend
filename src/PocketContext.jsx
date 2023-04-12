@@ -8,6 +8,7 @@ export const PocketContext = createContext();
 async function refreshAuth (source, value) {
   if (source === 1 ) {
     const localData = JSON.parse(localStorage.getItem('login_data'));
+
     return await refreshAuthorization(url, localData.token);
   }}
 
@@ -27,11 +28,13 @@ export function PocketProvider(props) {
       clearAuthorization,
     ];
 
+  createEffect(e=> console.log(login()));
+
   onMount( () => {
     if (localStorage.getItem('login_data')) {
       setLogin(2);
       refreshAuth(1).then( e => setLogin(e));
-    } else (setLogin(1),localStorage.clear());
+    } else (setLogin(1));
   });
 
   return (

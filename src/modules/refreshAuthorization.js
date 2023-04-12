@@ -6,11 +6,11 @@ const refreshAuthorization = async (api, token) => {
   const requestOptions = {
       method: 'POST',
       headers: refreshHeaders,
-      redirect: 'follow'
-    },
+      redirect: 'follow' },
     data = await fetch(url, requestOptions),
     jsonData = await data.json();
   if (data.status !== 200) {
+    localStorage.clear();
     return 4;
   } else {
     localStorage.setItem('login_data', JSON.stringify(jsonData));

@@ -1,4 +1,3 @@
-/* eslint-disable no-unused-vars */
 import { createSignal, Show } from 'solid-js';
 
 import { usePocket } from '../PocketContext';
@@ -11,11 +10,13 @@ function Login() {
   return (
     <dialog open>
       <article>
-        <Show when={login() === 1} fallback={<span aria-busy="true">Loading...</span>}>
+        <Show when={login() === 1 || login() === 4 } fallback={<span aria-busy="true">Loading...</span>}>
 
           <hgroup>
             <h2>Welcome</h2>
-            <small>Please sign in:</small>
+            <Show when={login() === 1} fallback={ <small><u>Autorization error</u>. Validate your credentials:</small>}>
+              <small>Please enter your credentials:</small>
+            </Show>
           </hgroup>
           <input type="email" placeholder="Email" value={email()} onInput={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" value={password()} onInput={(e) => setPassword(e.target.value)} />

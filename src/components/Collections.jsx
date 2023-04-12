@@ -1,11 +1,10 @@
 import { createResource, createSignal, Show, Index } from 'solid-js';
-import pb from '../modules/pbConnection';
 
 const [ open, setStatus ] = createSignal(false);
-const fetchCollections = async () => await pb.collections.getFullList({ sort: '-created' });
+//const fetchCollections = async () => await pb.collections.getFullList({ sort: '-created' });
 
 function CollectionsWindow() {
-  const [collections] = createResource(fetchCollections);
+  const [collections] = createResource();
   
   return (
     <dialog open>
