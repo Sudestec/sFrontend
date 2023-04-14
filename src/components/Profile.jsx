@@ -20,7 +20,7 @@ function Login() {
           </hgroup>
           <input type="email" placeholder="Email" value={email()} onInput={(e) => setEmail(e.target.value)} />
           <input type="password" placeholder="Password" value={password()} onInput={(e) => setPassword(e.target.value)} />
-          <button onClick={() => getAuthorization(email(),password())}>Log in</button>
+          <button onClick={() => getAuthorization(email(),password())} role="button">Log in</button>
         </Show>
       </article>
     </dialog>
@@ -32,7 +32,7 @@ function Profile() {
 
   return (
     <Show when={login() === 3 } fallback={<Login/>} >
-      <li><button onClick={() => clearAuthorization()} role="button"><i class="fa-solid fa-right-to-bracket" /></button></li>
+      <li><button onClick={() => clearAuthorization()} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-right-to-bracket" /></button></li>
     </Show>
   );
 

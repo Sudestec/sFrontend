@@ -1,4 +1,4 @@
-const logIn = async (api, username, password) => {
+const adminLogIn = async (api, username, password) => {
   const url = api+'/api/admins/auth-with-password';
 
   const formdata = new FormData();
@@ -20,4 +20,4 @@ const logIn = async (api, username, password) => {
     return 3;
   }};
 
-export default logIn;
+export default adminLogIn;

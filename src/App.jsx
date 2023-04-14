@@ -1,6 +1,5 @@
 import { lazy, Show } from 'solid-js';
 const Nav = lazy(() => import('./Nav'));
-const Header = lazy(() => import('./Header'));
 const Main = lazy(() => import('./Main'));
 const Footer = lazy(() => import('./Footer'));
 const Profile = lazy(() => import('./components/Profile'));
@@ -14,7 +13,6 @@ function App() {
   return (
     <Show when={login() === 3} fallback={<Profile />}>
       <Nav/>
-      <Header/>
       <Main/>
       <Footer/>
     </Show>

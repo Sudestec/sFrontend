@@ -4,7 +4,7 @@ function Footer() {
   return (
 
     <footer class='container'>
-      <small>Facundo Redon</small>
+      <small>Copyright © 2023 Sudestec Computer Repair Services and Solutions. All rights reserved.</small>
     </footer>
 
   );

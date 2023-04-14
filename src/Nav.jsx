@@ -2,6 +2,7 @@ import logo from './assets/nav-logo.svg';
 import Profile from './components/Profile';
 import Collections from './components/Collections';
 import Jobs from './components/Jobs';
+import Estimates from './components/Estimates';
 
 function Logo() {
 
@@ -22,6 +23,7 @@ function Nav() {
     <nav class='container'>
       <Logo />
       <ul>
+        <Estimates />
         <Jobs />
         <Collections/>
         <Profile />

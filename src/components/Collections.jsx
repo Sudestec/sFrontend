@@ -21,7 +21,7 @@ function CollectionsWindow() {
             }</Index>
           </table>
         </figure>
-        <button onClick={() => setStatus(!open())} role="button">Close</button>
+        <button onClick={() => setStatus(!open())} role="button" style={{'min-width': '51px'}}>Close</button>
       </article>
     </dialog>
   );
@@ -30,7 +30,7 @@ function CollectionsWindow() {
 export default function Collections() {
   return (
     <Show when={open() === false} fallback={<CollectionsWindow/>} >
-      <li><button onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-folder-tree" /></button></li>
+      <li><button onClick={() => setStatus(!open())} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-folder-tree" /></button></li>
     </Show>
   );
 }

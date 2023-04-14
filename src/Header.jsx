@@ -1,9 +1,9 @@
 function Welcome() {
   return (
-    <header class='container'>
+    <header>
       <hgroup>
-        <h1>Welcome</h1>
-        <small>Please sign in.</small>
+        <h1>Sudestec</h1>
+        <small>Statement of Authenticity and Copyright</small>
       </hgroup>
     </header>
 
