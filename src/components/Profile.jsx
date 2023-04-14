@@ -32,7 +32,7 @@ function Profile() {
 
   return (
     <Show when={login() === 3 } fallback={<Login/>} >
-      <li><button onClick={() => clearAuthorization()} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-right-to-bracket" /></button></li>
+      <li><button data-tooltip="Log Out" data-placement="bottom" onClick={() => clearAuthorization()} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-right-to-bracket" /></button></li>
     </Show>
   );
 

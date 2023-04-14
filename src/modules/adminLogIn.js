@@ -1,5 +1,5 @@
 const adminLogIn = async (api, username, password) => {
-  const url = api+'/api/admins/auth-with-password';
+  const url = api+'/api/collections/users/auth-with-password';
 
   const formdata = new FormData();
 

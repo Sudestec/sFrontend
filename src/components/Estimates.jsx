@@ -8,17 +8,17 @@ function EstimatesWindow() {
 
   return (
     <dialog open>
-      <article>
+      <article style={{'min-width': '100px'}}>
         <header>
           <nav>
             <ul>
               <li>
-                <button onClick={() => setStatus(!open())} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-xmark" /></button>
+                <button data-tooltip="Close" onClick={() => setStatus(!open())} role="button" style={{'min-width': '52px'}}><i class="fa-solid fa-xmark" /></button>
               </li>
             </ul>
             <ul>
               <li>
-                <button role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-plus" /></button>
+                <button data-tooltip="New" role="button" style={{'min-width': '52px'}}><i class="fa-solid fa-plus" /></button>
               </li>
             </ul>
           </nav>
@@ -35,7 +35,7 @@ function EstimatesWindow() {
 export default function Collections() {
   return (
     <Show when={open() === false} fallback={<EstimatesWindow/>} >
-      <li><button onClick={() => setStatus(!open())} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-receipt" /></button></li>
+      <li><button data-tooltip="Estimates" data-placement="bottom" onClick={() => setStatus(!open())} role="button" style={{'min-width': '52px'}}><i class="fa-solid fa-receipt" /></button></li>
     </Show>
   );
 }

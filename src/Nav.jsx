@@ -3,6 +3,7 @@ import Profile from './components/Profile';
 import Collections from './components/Collections';
 import Jobs from './components/Jobs';
 import Estimates from './components/Estimates';
+import Spares from './components/Spares';
 
 function Logo() {
 
@@ -23,6 +24,7 @@ function Nav() {
     <nav class='container'>
       <Logo />
       <ul>
+        <Spares />
         <Estimates />
         <Jobs />
         <Collections/>
