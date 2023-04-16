@@ -1,27 +1,15 @@
-import { createContext, useContext, createResource, createSignal, onMount, createEffect } from 'solid-js';
+import { createContext, useContext, createSignal, onMount, createEffect } from 'solid-js';
 import { url } from './modules/pbConnection';
 import refreshAuthorization from './modules/refreshAuthorization';
 import adminLogIn from './modules/adminLogIn';
+import getLocalToken from './modules/getLocalToken';
 
 export const PocketContext = createContext();
-
-async function refreshAuth (source) {
-  if (source === 1 ) {
-    const localData = JSON.parse(localStorage.getItem('login_data'));
-
-    return await refreshAuthorization(url, localData.token);
-  }}
-
-export async function checkLogin() {
-
-  return 1;
-}
 
 // login maneja states {1: 'refetch', 2: 'loading', 3: 'OK', 4: 'error'}
 
 export function PocketProvider(props) {
   const [ login, setLogin ] = createSignal(),
-    [ auth ,{ mutate, refetch } ] = createResource(login, refreshAuth),
     getAuthorization = async (username, password) => {
       setLogin(2);
       setLogin(await adminLogIn(url, username, password));
@@ -33,15 +21,14 @@ export function PocketProvider(props) {
       clearAuthorization,
     ];
 
-  createEffect(e=> console.log(login()));
-
   onMount( () => {
-    if (localStorage.getItem('login_data')) {
+    const localToken = getLocalToken();
+    if (localToken) {
       setLogin(2);
-      refreshAuth(1).then( e => setLogin(e));
+      refreshAuthorization(url, localToken.token).then( e => setLogin(e));
     } else (setLogin(1));
   });
-
+    
   return (
     <PocketContext.Provider value={authData}>
       {props.children}

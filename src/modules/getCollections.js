@@ -1,5 +1,5 @@
 const getCollections = async (api, token) => {
-  const url = api+'https://api.sudeste.ar';
+  const url = api+'/api/collections';
   const myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
   

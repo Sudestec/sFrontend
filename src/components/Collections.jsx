@@ -8,7 +8,7 @@ function CollectionsWindow() {
   
   return (
     <dialog open>
-      <article>
+      <article style={{'min-width': '75vh'}}>
         <h2>Collections</h2>
         <figure>
           <table role="grid">

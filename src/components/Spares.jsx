@@ -1,14 +1,14 @@
-import { createSignal, Show } from 'solid-js';
+import { createSignal, createResource, Show } from 'solid-js';
+import SearchSpares from './SearchSpares';
 
-const getSpares = async () => {};
+
 
 const [ open, setStatus ] = createSignal(false);
 
 function SparesWindow() {
-
   return (
     <dialog open>
-      <article>
+      <article style={{ 'max-width':'90vw'}}>
         <header>
           <nav>
             <ul>
@@ -18,9 +18,6 @@ function SparesWindow() {
             </ul>
             <ul>
               <li>
-                <input type="text" placeholder="Search..." />
-              </li>
-              <li>
                 <button data-tooltip="Search" role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-magnifying-glass" /></button>
               </li>
               <li>
@@ -29,7 +26,7 @@ function SparesWindow() {
             </ul>
           </nav>
         </header>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, at! Qui sequi harum aliquam adipisci magnam dolorem perferendis, itaque et nobis facere quia aut natus voluptatum unde atque vero earum?</p>
+        <SearchSpares />
       </article>
     </dialog>
 

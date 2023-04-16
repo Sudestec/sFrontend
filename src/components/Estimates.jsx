@@ -8,7 +8,7 @@ function EstimatesWindow() {
 
   return (
     <dialog open>
-      <article style={{'min-width': '100px'}}>
+      <article style={{'min-width': '75vh'}}>
         <header>
           <nav>
             <ul>

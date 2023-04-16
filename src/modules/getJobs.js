@@ -21,12 +21,4 @@ const getJobs = async (api, token, parameters) => {
 
   }};
 
-const token = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJleHAiOjE2ODEzMTU4NzksImlkIjoiMmd0NDU5dG1pajl3bDVsIiwidHlwZSI6ImFkbWluIn0.',
-  parameters = {
-    page: '', perPage: '', sort: '', filter: '', expand: ''
-  };
-
-console.log(url);
-
-getJobs(url,token,parameters)
-  .then(e => console.log(e));
+export default getJobs;

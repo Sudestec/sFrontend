@@ -1,5 +1,5 @@
 const refreshAuthorization = async (api, token) => {
-  const url = api+'/api/admins/auth-refresh',
+  const url = api+'/api/collections/users/auth-refresh',
     refreshHeaders = new Headers();
   refreshHeaders.append('Authorization', `Bearer ${token}`);
 

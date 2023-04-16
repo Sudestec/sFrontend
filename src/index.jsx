@@ -2,6 +2,7 @@
 import { render } from 'solid-js/web';
 
 import './index.css';
+import './theme.css';
 import App from './App';
 import { PocketProvider } from './PocketContext';
 

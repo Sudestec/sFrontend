@@ -38,3 +38,6 @@
   --switch-checked-background-color: var(--primary);
 }
 
+button {
+  min-width: 52px !important;
+}

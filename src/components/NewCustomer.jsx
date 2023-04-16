@@ -4,8 +4,8 @@ export default function NewCustomer() {
   const [email, setEmail] = createSignal('');
   const [password, setPassword] = createSignal('');
   return (
-    <article>
-      <small>New Customer</small>
+    <>
+      <p>Customer</p>
       <nav>
         <ul>
           <li>
@@ -18,7 +18,10 @@ export default function NewCustomer() {
             <input type="number" placeholder="Phone" />
           </li>
         </ul>
+        <ul>
+          <li><button>OK</button></li>
+        </ul>
       </nav>
-    </article>
+    </>
   );
 }
