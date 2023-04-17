@@ -7,7 +7,7 @@ function JobsWindow() {
 
   return (
     <dialog open>
-      <article style={{'min-width': '75vh'}}>
+      <article style={{'min-width': '90vmin'}}>
         <header>
           <nav>
             <ul>

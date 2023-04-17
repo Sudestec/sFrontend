@@ -1,32 +1,21 @@
-import getLocalToken from './modules/getLocalToken';
-
-const localData = getLocalToken();
+const localData = JSON.parse(localStorage.getItem('login_data'));
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);
-}
-
-async function getLocalData (data) {
-  if (!data) {
-    return false;
-  } else {
-    const data = {};
-    data.append(capitalizeFirstLetter(localData.record.username)) ;
-    return; 
-  }
-
 }
 
 function Welcome() {
   
   return (
     <header>
-      <div class='grid'>
-        <h1>{localData.record.username}</h1>
-        <ul>
-          <li>{localData.record.email}</li>
-          <li>{localData.record.type}</li>
-        </ul>
+      <div class="grid">
+        <hgroup>
+          <h1>{capitalizeFirstLetter(localData.record.username)}</h1>
+          <ul>
+            <li>{localData.record.email}</li>
+            <li>{capitalizeFirstLetter(localData.record.type)}</li>
+          </ul>
+        </hgroup>
       </div>
     </header>
   );

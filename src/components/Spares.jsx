@@ -1,14 +1,12 @@
 import { createSignal, createResource, Show } from 'solid-js';
 import SearchSpares from './SearchSpares';
 
-
-
 const [ open, setStatus ] = createSignal(false);
 
 function SparesWindow() {
   return (
     <dialog open>
-      <article style={{ 'max-width':'90vw'}}>
+      <article style={{ 'min-width':'95vmin'}}>
         <header>
           <nav>
             <ul>
