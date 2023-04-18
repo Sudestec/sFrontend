@@ -1,5 +1,5 @@
 import { createSignal, createResource, Show } from 'solid-js';
-import SearchSpares from './SearchSpares';
+import SearchSpares from './spares/SearchSpares';
 
 const [ open, setStatus ] = createSignal(false);
 

@@ -1,8 +1,8 @@
 import { createEffect, createResource, createSignal, onMount, For, Show } from 'solid-js';
-import getSpares from '../modules/getSpares';
-import getLocalToken from '../modules/getLocalToken';
-import { url } from '../modules/pbConnection';
-import { downloadBill } from '../modules/downloadBill';
+import getSpares from '../../modules/getSpares';
+import getLocalToken from '../../modules/getLocalToken';
+import { url } from '../../modules/pbConnection';
+import { downloadBill } from '../../modules/downloadBill';
 
 
 async function fetchData({url, token, parameters},{value}) {

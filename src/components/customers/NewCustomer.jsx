@@ -17,6 +17,17 @@ export default function NewCustomer() {
           <li>
             <input type="number" placeholder="Phone" />
           </li>
+          <li>
+            <input type="number" placeholder="Identification" />
+          </li>
+          <li>
+            <select required="" onChange={e => console.log(e)}>
+              <option value="" disabled="disabled" selected >Type</option>
+              <option value={'p7z8l5ez9uicwju'} >New</option>
+              <option value={'i9ony5vhyf5ifkc'} >Legacy</option>
+              <option value={'9pvx56lvhsr9myk'} >Returning</option>
+            </select>
+          </li>
         </ul>
         <ul>
           <li><button>OK</button></li>

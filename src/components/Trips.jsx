@@ -1,10 +1,9 @@
-import { createSignal, Show, lazy } from 'solid-js';
-//import { NewEstimate } from './NewEstimate';
-const NewEstimate = lazy(() => import('./estimates/NewEstimate'));
+import { createSignal, Show } from 'solid-js';
 
 const [ open, setStatus ] = createSignal(false);
 
-function EstimatesWindow() {
+function JobsWindow() {
+  // const [jobs] = createResource(fetchJobs);
 
   return (
     <dialog open>
@@ -23,7 +22,7 @@ function EstimatesWindow() {
             </ul>
           </nav>
         </header>
-        <NewEstimate /> 
+        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, at! Qui sequi harum aliquam adipisci magnam dolorem perferendis, itaque et nobis facere quia aut natus voluptatum unde atque vero earum?</p>
       </article>
     </dialog>
 
@@ -34,8 +33,8 @@ function EstimatesWindow() {
 
 export default function Collections() {
   return (
-    <Show when={open() === false} fallback={<EstimatesWindow/>} >
-      <li><button data-tooltip="Estimates" data-placement="bottom" onClick={() => setStatus(!open())} role="button" style={{'min-width': '52px'}}><i class="fa-solid fa-receipt" /></button></li>
+    <Show when={open() === false} fallback={<JobsWindow/>} >
+      <li><button data-tooltip="Jobs" data-placement="bottom" onClick={() => setStatus(!open())} role="button" style={{'min-width': '52px'}}><i class="fa-brands fa-black-tie" /></button></li>
     </Show>
   );
 }
