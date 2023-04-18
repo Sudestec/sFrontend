@@ -1,4 +1,4 @@
-const adminLogIn = async (api, username, password) => {
+const logIn = async (api, username, password) => {
   const url = api+'/api/collections/users/auth-with-password';
 
   const formdata = new FormData();
@@ -14,10 +14,10 @@ const adminLogIn = async (api, username, password) => {
     data = await fetch(url, requestOptions),
     jsonData = await data.json(); 
   if (data.status !== 200) {
-    return 4;
+    return 'error';
   } else {
     localStorage.setItem('login_data', JSON.stringify(jsonData));
-    return 3;
+    return jsonData;
   }};
 
-export default adminLogIn;
+export default logIn;

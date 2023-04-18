@@ -11,10 +11,10 @@ const refreshAuthorization = async (api, token) => {
     jsonData = await data.json();
   if (data.status !== 200) {
     localStorage.clear();
-    return 4;
+    return {state: 'error'};
   } else {
     localStorage.setItem('login_data', JSON.stringify(jsonData));
-    return 3;
+    return {state: 'authorized', data: jsonData};
   }};
   
 export default refreshAuthorization;

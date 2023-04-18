@@ -4,7 +4,7 @@ import { render } from 'solid-js/web';
 import './index.css';
 import './theme.css';
 import App from './App';
-import { PocketProvider } from './PocketContext';
+import { PocketProvider } from './AuthContext';
 
 
 if (import.meta.env.DEV && !(document.getElementById('root') instanceof HTMLElement)) {
