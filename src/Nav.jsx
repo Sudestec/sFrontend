@@ -1,6 +1,6 @@
 import logo from './assets/nav-logo.svg';
 import Profile from './components/Profile';
-import Collections from './components/Collections';
+import Customers from './components/customers/Customers';
 import Jobs from './components/Jobs';
 import Estimates from './components/Estimates';
 import Spares from './components/Spares';
@@ -27,7 +27,7 @@ function Nav() {
         <Spares />
         <Estimates />
         <Jobs />
-        <Collections/>
+        <Customers/>
         <Profile />
       </ul>
     </nav>

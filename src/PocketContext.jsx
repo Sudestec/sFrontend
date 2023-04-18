@@ -1,7 +1,7 @@
 import { createContext, useContext, createSignal, onMount, createEffect } from 'solid-js';
 import { url } from './modules/pbConnection';
 import refreshAuthorization from './modules/refreshAuthorization';
-import adminLogIn from './modules/adminLogIn';
+import adminLogIn from './modules/logIn';
 import getLocalToken from './modules/getLocalToken';
 
 export const PocketContext = createContext();

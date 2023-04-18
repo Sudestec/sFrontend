@@ -3,12 +3,12 @@ const Nav = lazy(() => import('./Nav'));
 const Main = lazy(() => import('./Main'));
 const Footer = lazy(() => import('./Footer'));
 const Profile = lazy(() => import('./components/Profile'));
-import { usePocket } from './PocketContext';
+import { usePocket } from './AuthContext';
 
 function App() {
   const [login] = usePocket();
   return (
-    <Show when={login() === 3} fallback={<Profile />}>
+    <Show when={login.state === 'authorized'} fallback={<Profile />}>
       <Nav/>
       <Main/>
       <Footer/>
