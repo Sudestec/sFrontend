@@ -6,7 +6,7 @@
   --primary-hover: rgb(136, 118, 255);
   --primary-focus: rgba(136, 118, 255, 0.125);
   --primary-inverse: #fff;
-  --background-color: rgb(123, 105, 242, 0.01);
+  --background-color: #7b69f203;
 }
 
 /* Pink Dark scheme (Auto) */
@@ -14,10 +14,17 @@
 @media only screen and (prefers-color-scheme: dark) {
   :root:not([data-theme]) {
     --primary: #7d6bf2;
-    --primary-hover: rgb(123, 105, 242);
-    --primary-focus: rgba(136, 118, 255, 0.25);
+    --primary-hover: hsl(248, 100%, 68%);
+    --primary-focus: rgba(125, 107, 242, 0.25);
     --primary-inverse: #fff;
-    --background-color: rgb(123, 105, 242, 0.1);
+    --background-color: #0D0B1A;
+    --muted-border-color: rgb(125, 107, 242, 0.25);
+    --form-element-border-color: rgba(125, 107, 242, 0.5);
+    --form-element-background-color: #7d6bf240;
+    --card-background-color: #1A1633;
+    --card-sectionning-background-color: #27224D;
+    --card-box-shadow: 0px 0px 25px 1px #8370FF;
+    --modal-overlay-background-color: rgba(0, 0, 0, 0.25);
   }
 }
 

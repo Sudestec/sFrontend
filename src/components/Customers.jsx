@@ -2,8 +2,8 @@ import { createSignal, Show } from 'solid-js';
 
 const [ open, setStatus ] = createSignal(false);
 
-function JobsWindow() {
-  // const [jobs] = createResource(fetchJobs);
+function CustomersWindow() {
+  // const [Customers] = createResource(fetchCustomers);
 
   return (
     <dialog open>
@@ -12,12 +12,12 @@ function JobsWindow() {
           <nav>
             <ul>
               <li>
-                <button data-tooltip="Close" onClick={() => setStatus(!open())} role="button" style={{'min-width': '52px'}}><i class="fa-solid fa-xmark" /></button>
+                <button data-tooltip="Close" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-xmark" /></button>
               </li>
             </ul>
             <ul>
               <li>
-                <button data-tooltip="New" role="button" style={{'min-width': '52px'}}><i class="fa-solid fa-plus" /></button>
+                <button data-tooltip="New" role="button"><i class="fa-solid fa-plus" /></button>
               </li>
             </ul>
           </nav>
@@ -33,8 +33,8 @@ function JobsWindow() {
 
 export default function Collections() {
   return (
-    <Show when={open() === false} fallback={<JobsWindow/>} >
-      <li><button data-tooltip="Jobs" data-placement="bottom" onClick={() => setStatus(!open())} role="button" style={{'min-width': '52px'}}><i class="fa-brands fa-black-tie" /></button></li>
+    <Show when={open() === false} fallback={<CustomersWindow/>} >
+      <li><button data-tooltip="Customers" data-placement="bottom" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-people-group" /></button></li>
     </Show>
   );
 }

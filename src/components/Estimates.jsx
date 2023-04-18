@@ -1,6 +1,6 @@
 import { createSignal, Show, lazy } from 'solid-js';
 //import { NewEstimate } from './NewEstimate';
-const NewEstimate = lazy(() => import('./NewEstimate'));
+const NewEstimate = lazy(() => import('./estimates/NewEstimate'));
 
 const [ open, setStatus ] = createSignal(false);
 
@@ -8,7 +8,7 @@ function EstimatesWindow() {
 
   return (
     <dialog open>
-      <article style={{'min-width': '75vh'}}>
+      <article style={{'min-width': '90vmin'}}>
         <header>
           <nav>
             <ul>

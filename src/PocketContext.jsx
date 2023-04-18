@@ -22,10 +22,9 @@ export function PocketProvider(props) {
     ];
 
   onMount( () => {
-    const localToken = getLocalToken();
-    if (localToken) {
+    if (getLocalToken()) {
       setLogin(2);
-      refreshAuthorization(url, localToken.token).then( e => setLogin(e));
+      refreshAuthorization(url, getLocalToken()).then( e => setLogin(e));
     } else (setLogin(1));
   });
     
