@@ -1,13 +1,16 @@
-import { createSignal, Show } from 'solid-js';
+import { createSignal, Show, Switch, Match } from 'solid-js';
+import { CustomerProvider, useCustomer } from './CustomerContext';
+import SearchCustomers from './SearchCustomers';
+import NewCustomer from './NewCustomer';
 
 const [ open, setStatus ] = createSignal(false);
 
 function CustomersWindow() {
-  // const [Customers] = createResource(fetchCustomers);
+  const [customers,setCustomers] = useCustomer();
 
   return (
     <dialog open>
-      <article style={{'min-width': '90vmin'}}>
+      <article style={{'min-width': 'fit-content'}}>
         <header>
           <nav>
             <ul>
@@ -17,15 +20,22 @@ function CustomersWindow() {
             </ul>
             <ul>
               <li>
-                <button data-tooltip="New" role="button"><i class="fa-solid fa-plus" /></button>
+                <button data-tooltip="New" role="button" onClick={() => setCustomers({tab:'create'})}><i class="fa-solid fa-plus" /></button>
               </li>
               <li>
-                <button data-tooltip="Search" role="button"><i class="fa-solid fa-magnifying-glass" /></button>
+                <button data-tooltip="Search" role="button" onClick={() => setCustomers({tab:'search'})}><i class="fa-solid fa-magnifying-glass" /></button>
               </li>
             </ul>
           </nav>
         </header>
-        <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Molestiae, at! Qui sequi harum aliquam adipisci magnam dolorem perferendis, itaque et nobis facere quia aut natus voluptatum unde atque vero earum?</p>
+        <Switch fallback={<p aria-busy='true' />}> 
+          <Match when={customers.tab ==='search'}>
+            <SearchCustomers />
+          </Match>
+          <Match when={customers.tab ==='create'}>
+            <NewCustomer />
+          </Match>
+        </Switch>
       </article>
     </dialog>
 
@@ -36,8 +46,11 @@ function CustomersWindow() {
 
 export default function Collections() {
   return (
-    <Show when={open() === false} fallback={<CustomersWindow/>} >
-      <li><button data-tooltip="Customers" data-placement="bottom" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-people-group" /></button></li>
-    </Show>
+    <CustomerProvider>
+      <Show when={open() === false} fallback={<CustomersWindow/>} >
+        <li><button data-tooltip="Customers" data-placement="bottom" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-people-group" /></button></li>
+      </Show>
+    </CustomerProvider>
+
   );
 }

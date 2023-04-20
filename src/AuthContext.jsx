@@ -1,5 +1,5 @@
 import { createStore } from 'solid-js/store';
-import { createContext, useContext, onMount, createEffect } from 'solid-js';
+import { createContext, useContext, onMount } from 'solid-js';
 import { url } from './modules/pbConnection';
 import refreshAuthorization from './modules/refreshAuthorization';
 import logIn from './modules/logIn';
@@ -22,10 +22,6 @@ export function PocketProvider(props) {
       getAuthorization,
       clearAuthorization,
     ];
-
-  createEffect( () => {
-    console.log(login.state);
-  });
 
   onMount( () => {
     const token = getLocalToken();

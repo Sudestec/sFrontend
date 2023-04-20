@@ -6,7 +6,7 @@ const [ open, setStatus ] = createSignal(false);
 function SparesWindow() {
   return (
     <dialog open>
-      <article style={{ 'min-width':'95vmin'}}>
+      <article style={{ 'min-width':'90vmin'}}>
         <header>
           <nav>
             <ul>

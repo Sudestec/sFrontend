@@ -1,29 +1,34 @@
 import { createStore } from 'solid-js/store';
-import { createContext, useContext, onMount, createEffect } from 'solid-js';
-import { url } from './modules/pbConnection';
-import getLocalToken from './modules/getLocalToken';
+import { createContext, useContext, onMount, createSignal } from 'solid-js';
 
 export const CustomerContext = createContext();
 
+const customersDefault = {
+  search: {
+    page: 1,
+    perPage: '10',
+    sort: '-updated'
+  },
+  results: '',
+  create: '',
+  details: '',
+  tab: 'search'  
+};
+
 export function CustomerProvider(props) {
-  const [ customers, setCustomers ] = createStore({state:'refetch', data: false}),
-    customerData = {
-
-    };
-  onMount( () => {
-    if (getLocalToken()) {
-      setCustomers({state: 'loading', data: {token: getLocalToken()}});
-      getCustomers(url, getLocalToken())
-        .then( e => setCustomers({state: e.state, data: e.data}));
-    } else (setCustomers({state: 'refetch'}));
+  const [ customers, setCustomers ] = createStore(customersDefault),
+    [ searchSettings, setSearchSettings ] = createSignal(),
+    customersData = [
+      customers,
+      setCustomers
+    ];
+  onMount(() => {
   });
+    
   return (
-
-    <CustomerContext.Provider value={customerData}>
-
+    <CustomerContext.Provider value={customersData}>
       {props.children}
-
     </CustomerContext.Provider>
   );}
 
-export function usePocket() { return useContext(CustomerContext); }
+export function useCustomer() { return useContext(CustomerContext); }

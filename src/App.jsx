@@ -1,4 +1,4 @@
-import { lazy, Show, SuspenseList, Suspense } from 'solid-js';
+import { lazy, Show } from 'solid-js';
 const Nav = lazy(() => import('./Nav'));
 const Main = lazy(() => import('./Main'));
 const Footer = lazy(() => import('./Footer'));

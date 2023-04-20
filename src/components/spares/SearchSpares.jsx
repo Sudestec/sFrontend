@@ -90,9 +90,8 @@ export default function SearchSpares() {
           </li>
         </ul>
       </nav>
-      <nav />
       <footer>
-        <figure style={{'width': '100%'}}>
+        <figure>
           <table>
             <thead>
               <tr>
