@@ -1,7 +1,5 @@
 import { createStore } from 'solid-js/store';
-import { createContext, useContext, onMount, createSignal } from 'solid-js';
-
-export const CustomerContext = createContext();
+import { createContext, useContext, onMount, createSignal, createEffect } from 'solid-js';
 
 const customersDefault = {
   search: {
@@ -14,17 +12,21 @@ const customersDefault = {
   details: '',
   tab: 'search'  
 };
+export const CustomerContext = createContext();
+
 
 export function CustomerProvider(props) {
   const [ customers, setCustomers ] = createStore(customersDefault),
-    [ searchSettings, setSearchSettings ] = createSignal(),
-    customersData = [
-      customers,
-      setCustomers
-    ];
-  onMount(() => {
-  });
-    
+    [ settings, setSettings] = createSignal(),
+    customersData = {
+      customers: customers,
+      setCustomers,
+      settings,
+      setSettings
+    };
+
+  createEffect(() => console.log(customers));
+
   return (
     <CustomerContext.Provider value={customersData}>
       {props.children}

@@ -6,19 +6,15 @@ import getLocalToken from '../../modules/getLocalToken';
 
 const fetchCustomers = async (source) => {
   const token = getLocalToken();
-
-  return (!source) ?
-    await getCustomers(url,token)
-    :await getCustomers(url,token,source);
+  return await getCustomers(url,token,source);
 };
 
 
 export default function SearchCustomers() {
-  const [ customers, setCustomers ] = useCustomer();
-  const [ page, setPage] = createSignal(1);
-  const [ perPage, setPerPage] = createSignal('10');
-  const [ sort, setSort] = createSignal('-updated');
-  const [ settings, setSettings] = createSignal();
+  const { customers, setCustomers, settings, setSettings } = useCustomer();
+  const [ page, setPage] = createSignal(customers.search.page);
+  const [ perPage, setPerPage] = createSignal(customers.search.perPage);
+  const [ sort, setSort] = createSignal(customers.search.sort);
   const [ results ] = createResource(settings, fetchCustomers);
 
   createEffect( () => {
@@ -27,13 +23,12 @@ export default function SearchCustomers() {
       perPage: perPage(),
       sort: sort()
     });
-
+  });
+  createEffect(() => {
     setCustomers('results', results());
   });
-
-  onMount(() => {
-    console.log(customers);
-    
+  createEffect(() => {
+    setCustomers('search', settings());
   });
 
   return (

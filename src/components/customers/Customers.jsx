@@ -6,11 +6,11 @@ import NewCustomer from './NewCustomer';
 const [ open, setStatus ] = createSignal(false);
 
 function CustomersWindow() {
-  const [customers,setCustomers] = useCustomer();
+  const {customers,setCustomers} = useCustomer();
 
   return (
     <dialog open>
-      <article style={{'min-width': 'fit-content'}}>
+      <article style={{'min-width': '90vmin'}}>
         <header>
           <nav>
             <ul>
