@@ -8,13 +8,9 @@ const refreshAuthorization = async (api, token) => {
       headers: refreshHeaders,
       redirect: 'follow' },
     data = await fetch(url, requestOptions),
-    jsonData = await data.json();
-  if (data.status !== 200) {
-    localStorage.clear();
-    return {state: 'error'};
-  } else {
-    localStorage.setItem('login_data', JSON.stringify(jsonData));
-    return {state: 'authorized', data: jsonData};
-  }};
+    jsonData = await data.json(); 
+  localStorage.setItem('login_data', JSON.stringify(jsonData));
+  return jsonData;
+};
   
 export default refreshAuthorization;

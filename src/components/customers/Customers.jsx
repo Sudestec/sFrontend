@@ -19,6 +19,9 @@ function CustomersWindow() {
               <li>
                 <button data-tooltip="New" role="button"><i class="fa-solid fa-plus" /></button>
               </li>
+              <li>
+                <button data-tooltip="Search" role="button"><i class="fa-solid fa-magnifying-glass" /></button>
+              </li>
             </ul>
           </nav>
         </header>

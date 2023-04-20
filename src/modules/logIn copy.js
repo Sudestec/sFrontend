@@ -13,8 +13,11 @@ const logIn = async (api, username, password) => {
     },
     data = await fetch(url, requestOptions),
     jsonData = await data.json(); 
-  localStorage.setItem('login_data', JSON.stringify(jsonData));
-  return jsonData;
-};
+  if (data.status !== 200) {
+    return 'error';
+  } else {
+    localStorage.setItem('login_data', JSON.stringify(jsonData));
+    return jsonData;
+  }};
 
 export default logIn;

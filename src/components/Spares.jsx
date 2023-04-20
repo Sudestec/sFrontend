@@ -11,15 +11,15 @@ function SparesWindow() {
           <nav>
             <ul>
               <li>
-                <button data-tooltip="Close" onClick={() => setStatus(!open())} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-xmark" /></button>
+                <button data-tooltip="Close" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-xmark" /></button>
               </li>
             </ul>
             <ul>
               <li>
-                <button data-tooltip="Search" role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-magnifying-glass" /></button>
+                <button data-tooltip="Search" role="button"><i class="fa-solid fa-magnifying-glass" /></button>
               </li>
               <li>
-                <button data-tooltip="New" role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-plus" /></button>
+                <button data-tooltip="New" role="button"><i class="fa-solid fa-plus" /></button>
               </li>
             </ul>
           </nav>
@@ -36,7 +36,7 @@ function SparesWindow() {
 export default function Collections() {
   return (
     <Show when={open() === false} fallback={<SparesWindow/>} >
-      <li><button data-tooltip="Spares" data-placement="bottom" onClick={() => setStatus(!open())} role="button" style={{'min-width': '51px'}}><i class="fa-solid fa-computer" /></button></li>
+      <li><button data-tooltip="Spares" data-placement="bottom" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-computer" /></button></li>
     </Show>
   );
 }
