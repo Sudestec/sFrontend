@@ -16,7 +16,7 @@ export function PocketProvider(props) {
       const data = await logIn(url, username, password);
       data.token ? setLogin({state: 'authorized', data: data}) : setLogin({state: 'error'});
     },
-    clearAuthorization = () => (localStorage.clear(),setLogin({state: 'refetch'})),
+    clearAuthorization = () => (sessionStorage.clear(),setLogin({state: 'refetch'})),
     authData = [
       login,
       getAuthorization,
@@ -29,7 +29,7 @@ export function PocketProvider(props) {
       setLogin({ state: 'loading'});
       refreshAuthorization(url, token)
         .then( e => {
-          e.token ? setLogin({state: 'authorized', data: e}) : (localStorage.clear(),setLogin({state: 'error'}));
+          e.token ? setLogin({state: 'authorized', data: e}) : (sessionStorage.clear(),setLogin({state: 'error'}));
         });}
     else setLogin({state: 'refetch'});
   });

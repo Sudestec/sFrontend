@@ -13,7 +13,7 @@ const logIn = async (api, username, password) => {
     },
     data = await fetch(url, requestOptions),
     jsonData = await data.json(); 
-  localStorage.setItem('login_data', JSON.stringify(jsonData));
+  sessionStorage.setItem('login_data', JSON.stringify(jsonData));
   return jsonData;
 };
 

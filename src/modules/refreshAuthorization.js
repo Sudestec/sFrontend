@@ -9,7 +9,7 @@ const refreshAuthorization = async (api, token) => {
       redirect: 'follow' },
     data = await fetch(url, requestOptions),
     jsonData = await data.json(); 
-  localStorage.setItem('login_data', JSON.stringify(jsonData));
+  sessionStorage.setItem('login_data', JSON.stringify(jsonData));
   return jsonData;
 };
   

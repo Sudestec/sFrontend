@@ -1,4 +1,4 @@
-const localData = JSON.parse(localStorage.getItem('login_data'));
+const localData = JSON.parse(sessionStorage.getItem('login_data'));
 
 function capitalizeFirstLetter(string) {
   return string.charAt(0).toUpperCase() + string.slice(1);

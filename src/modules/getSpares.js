@@ -21,7 +21,7 @@ const getSpares = async (api, token, parameters = { page: '', perPage: '', sort:
     return data.status;
   } else {
     console.log(jsonData);
-    //localStorage.setItem('login_data', JSON.stringify(jsonData));
+    //sessionStorage.setItem('login_data', JSON.stringify(jsonData));
     return jsonData;
 
   }};

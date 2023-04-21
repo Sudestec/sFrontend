@@ -16,7 +16,7 @@ const getJobs = async (api, token, parameters) => {
   if (data.status !== 200) {
     return data.status;
   } else {
-    //localStorage.setItem('login_data', JSON.stringify(jsonData));
+    //sessionStorage.setItem('login_data', JSON.stringify(jsonData));
     return jsonData;
 
   }};

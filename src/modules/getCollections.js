@@ -12,10 +12,10 @@ const getCollections = async (api, token) => {
     jsonData = await data.json();
 
   if (data.status !== 200) {
-    localStorage.clear();
+    sessionStorage.clear();
     return 4;
   } else {
-    localStorage.setItem('login_data', JSON.stringify(jsonData));
+    sessionStorage.setItem('login_data', JSON.stringify(jsonData));
     return 3;
   }};
   
