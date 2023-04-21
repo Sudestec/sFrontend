@@ -24,9 +24,11 @@ export default function SearchCustomers() {
       sort: sort()
     });
   });
+
   createEffect(() => {
     setCustomers('results', results());
   });
+  
   createEffect(() => {
     setCustomers('search', settings());
   });
@@ -80,7 +82,7 @@ export default function SearchCustomers() {
       </nav>
       <footer>
         <figure >
-          <table>
+          <table style={{'min-width': 'fit-content'}}>
             <thead>
               <tr>
                 <th scope="col">First Name</th>
@@ -93,7 +95,6 @@ export default function SearchCustomers() {
             </thead>
             <Show when={customers.results} fallback={<tbody aria-busy='true' />}>
               <tbody>
-
                 <For each={customers.results.items}>{(customer, i) =>
                   <tr>
                     <th scope="row">{customer.name}</th>

@@ -2,14 +2,20 @@ import { createEffect, createSignal, onMount } from 'solid-js';
 import createCustomer from './createCustomer';
 import { url } from '../../modules/pbConnection';
 import getLocalToken from '../../modules/getLocalToken';
+import { useCustomer } from './CustomerContext';
+
+async function postCustomer (source) {
+  
+}
 
 export default function NewCustomer() {
-  const [firstName, setFirstName] = createSignal('');
-  const [lastName, setLastName] = createSignal('');
-  const [phone, setPhone] = createSignal('');
-  const [identification, setidentIdentification] = createSignal('');
-  const [type, setType] = createSignal('');
-  const [newCustomer, setNewCustomer] = createSignal('');
+  const { setCustomers } = useCustomer();
+  const [ firstName, setFirstName ] = createSignal('');
+  const [ lastName, setLastName ] = createSignal('');
+  const [ phone, setPhone ] = createSignal('');
+  const [ identification, setidentIdentification ] = createSignal('');
+  const [ type, setType ] = createSignal('');
+  const [ newCustomer, setNewCustomer ] = createSignal('');
 
   createEffect(() => setNewCustomer({
     name: firstName(),
@@ -19,6 +25,9 @@ export default function NewCustomer() {
     type: type(),
   }));
 
+  createEffect( () => {
+    setCustomers('create', newCustomer());
+  });
 
   return (
     <>
