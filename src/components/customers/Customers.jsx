@@ -17,6 +17,9 @@ function CustomersWindow() {
               <li>
                 <button data-tooltip="Close" onClick={() => setStatus(!open())} role="button"><i class="fa-solid fa-xmark" /></button>
               </li>
+              <li>
+                <span>Customers</span>
+              </li>
             </ul>
             <ul>
               <li>

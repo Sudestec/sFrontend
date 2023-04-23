@@ -51,7 +51,7 @@ export default function SearchCustomers() {
             </li>
             <li>
               <Show when={customers.results} fallback={<button role='button' disabled aria-busy='true' />}>
-                <button role='button' disabled>{customers.results.totalItems}</button>
+                <button role='button' disabled>{customers.results.totalPages}</button>
               </Show>
             </li>
             <li>

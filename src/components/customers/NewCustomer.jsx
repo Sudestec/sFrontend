@@ -1,11 +1,12 @@
-import { createEffect, createSignal, onMount } from 'solid-js';
+import { createEffect, createResource, createSignal, onMount, Show } from 'solid-js';
 import createCustomer from './createCustomer';
 import { url } from '../../modules/pbConnection';
 import getLocalToken from '../../modules/getLocalToken';
 import { useCustomer } from './CustomerContext';
 
-async function postCustomer (source) {
-  
+async function fetchBackend (source) {
+  const token = getLocalToken();
+  return await createCustomer(url, token, source);
 }
 
 export default function NewCustomer() {
@@ -15,7 +16,9 @@ export default function NewCustomer() {
   const [ phone, setPhone ] = createSignal('');
   const [ identification, setidentIdentification ] = createSignal('');
   const [ type, setType ] = createSignal('');
-  const [ newCustomer, setNewCustomer ] = createSignal('');
+  const [ newCustomer, setNewCustomer ] = createSignal(false);
+  const [ postCustomer, setPostCustomer ] = createSignal(false);
+  const [ createdCustomer ] = createResource(postCustomer, fetchBackend);
 
   createEffect(() => setNewCustomer({
     name: firstName(),
@@ -26,12 +29,15 @@ export default function NewCustomer() {
   }));
 
   createEffect( () => {
-    setCustomers('create', newCustomer());
+    console.log(createdCustomer.state);
+  });
+  createEffect( () => {
+    setCustomers('create', createdCustomer());
   });
 
   return (
     <>
-      <p>Customer</p>
+      <p>Create</p>
       <nav>
         <ul>
           <li>
@@ -56,9 +62,12 @@ export default function NewCustomer() {
           </li>
         </ul>
         <ul>
-          <li><button onClick={() => createCustomer(url, getLocalToken(), newCustomer())} role="button">OK</button></li>
+          <li><button onClick={() => setPostCustomer(newCustomer())} role="button" >OK</button></li>
         </ul>
       </nav>
+      <Show when={createdCustomer()}>
+        <p>Created</p>
+      </Show>
     </>
   );
 }
