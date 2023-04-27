@@ -1,8 +1,9 @@
-import { createEffect, createResource, createSignal, onMount, Show } from 'solid-js';
+import { createEffect, createResource, createSignal, onMount, Show, Switch, Match } from 'solid-js';
 import createCustomer from './createCustomer';
 import { url } from '../../modules/pbConnection';
 import getLocalToken from '../../modules/getLocalToken';
 import { useCustomer } from './CustomerContext';
+import capitalizeFirstLetter from '../../modules/capitalizeFirstLetter';
 
 async function fetchBackend (source) {
   const token = getLocalToken();
@@ -21,23 +22,20 @@ export default function NewCustomer() {
   const [ createdCustomer ] = createResource(postCustomer, fetchBackend);
 
   createEffect(() => setNewCustomer({
-    name: firstName(),
-    last: lastName(),
+    name: firstName().toLowerCase(),
+    last: lastName().toLowerCase(),
     phone: phone(),
     identification: identification(),
     type: type(),
   }));
 
   createEffect( () => {
-    console.log(createdCustomer.state);
-  });
-  createEffect( () => {
     setCustomers('create', createdCustomer());
   });
 
   return (
     <>
-      <p>Create</p>
+      <span>Create</span>
       <nav>
         <ul>
           <li>
@@ -65,9 +63,37 @@ export default function NewCustomer() {
           <li><button onClick={() => setPostCustomer(newCustomer())} role="button" >OK</button></li>
         </ul>
       </nav>
-      <Show when={createdCustomer()}>
-        <p>Created</p>
-      </Show>
+      <footer>
+        <Show when={createdCustomer()}>
+          <nav>
+            <ul>
+              <li>
+                <hgroup>
+                  <h4>{() => capitalizeFirstLetter(createdCustomer().name)}</h4>
+                  <small>{() => capitalizeFirstLetter(createdCustomer().last)}</small>
+                </hgroup>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <hgroup>
+                  <h4>Phone</h4>
+                  <small>{() => createdCustomer().phone}</small>
+                </hgroup>
+              </li>
+            </ul>
+            <ul>
+              <li>
+                <hgroup>
+                  <h4>Identification</h4>
+                  <small>{() => createdCustomer().identification}</small>
+                </hgroup>
+              </li>
+            </ul>
+          </nav>
+        </Show>
+      </footer>
     </>
   );
 }
+

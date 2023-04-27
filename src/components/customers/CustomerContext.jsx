@@ -25,8 +25,6 @@ export function CustomerProvider(props) {
       setSettings
     };
 
-  createEffect(() => console.log(customers));
-
   return (
     <CustomerContext.Provider value={customersData}>
       {props.children}

@@ -1,21 +1,23 @@
-const localData = JSON.parse(sessionStorage.getItem('login_data'));
-
-function capitalizeFirstLetter(string) {
-  return string.charAt(0).toUpperCase() + string.slice(1);
-}
+import { usePocket } from './AuthContext';
+import capitalizeFirstLetter from './modules/capitalizeFirstLetter';
+import getLocalToken from './modules/getLocalToken';
 
 function Welcome() {
   
+  const {record} = getLocalToken();
+  const {login} = usePocket;
+
   return (
     <header>
       <div class="grid">
         <hgroup>
-          <h1>{capitalizeFirstLetter(localData.record.username)}</h1>
+          <h1>{record.username}</h1>
           <ul>
-            <li>{localData.record.email}</li>
-            <li>{capitalizeFirstLetter(localData.record.type)}</li>
+            <li>{record.email}</li>
+            <li>{record.type}</li>
           </ul>
         </hgroup>
+        <p>{login.data}</p>
       </div>
     </header>
   );

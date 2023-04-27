@@ -5,7 +5,7 @@ import { url } from '../../modules/pbConnection';
 import getLocalToken from '../../modules/getLocalToken';
 
 const fetchCustomers = async (source) => {
-  const token = getLocalToken();
+  const {token} = getLocalToken();
   return await getCustomers(url,token,source);
 };
 

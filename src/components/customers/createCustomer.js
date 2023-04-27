@@ -19,7 +19,6 @@ export default async function createCustomer(url, token, data) {
 
   const response = await fetch(`${url}/api/collections/customers/records`, requestOptions);
   const jsonData = await response.json();
-  console.log(jsonData);
   return jsonData; 
 
 }
