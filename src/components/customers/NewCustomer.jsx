@@ -72,8 +72,8 @@ export default function NewCustomer() {
             <ul>
               <li>
                 <hgroup>
-                  <h4>{firstName()}</h4>
-                  <small>{lastName()}</small>
+                  <h4>{customers.create.name}</h4>
+                  <small>{customers.create.last}</small>
                 </hgroup>
               </li>
             </ul>
@@ -81,7 +81,7 @@ export default function NewCustomer() {
               <li>
                 <hgroup>
                   <h4>Phone</h4>
-                  <small>{phone()}</small>
+                  <small>{customers.create.phone}</small>
                 </hgroup>
               </li>
             </ul>
@@ -89,7 +89,7 @@ export default function NewCustomer() {
               <li>
                 <hgroup>
                   <h4>Identification</h4>
-                  <small>{identification()}</small>
+                  <small>{customers.create.email}</small>
                 </hgroup>
               </li>
             </ul>
