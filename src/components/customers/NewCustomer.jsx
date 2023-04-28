@@ -67,7 +67,7 @@ export default function NewCustomer() {
         </ul>
       </nav>
       <footer>
-        <Show when={createdCustomer()}>
+        <Show when={customers.create}>
           <nav>
             <ul>
               <li>
