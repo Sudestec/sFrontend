@@ -11,7 +11,7 @@ async function fetchBackend (source) {
 }
 
 export default function NewCustomer() {
-  const { setCustomers } = useCustomer();
+  const { customers,setCustomers } = useCustomer();
   const [ firstName, setFirstName ] = createSignal('');
   const [ lastName, setLastName ] = createSignal('');
   const [ phone, setPhone ] = createSignal('');
@@ -71,6 +71,7 @@ export default function NewCustomer() {
                 <hgroup>
                   <h4>{firstName()}</h4>
                   <small>{lastName()}</small>
+                  <small>{customers.create.name}</small>
                 </hgroup>
               </li>
             </ul>
