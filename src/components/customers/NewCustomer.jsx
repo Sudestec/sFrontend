@@ -69,8 +69,8 @@ export default function NewCustomer() {
             <ul>
               <li>
                 <hgroup>
-                  <h4>{capitalizeFirstLetter(() => createdCustomer().name)}</h4>
-                  <small>{capitalizeFirstLetter(() => createdCustomer().last)}</small>
+                  <h4>{() => createdCustomer().name}</h4>
+                  <small>{() => createdCustomer().last}</small>
                 </hgroup>
               </li>
             </ul>
