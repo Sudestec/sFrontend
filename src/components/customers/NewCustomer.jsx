@@ -33,7 +33,7 @@ export default function NewCustomer() {
     setCustomers('create', createdCustomer());
   });
   createEffect( () => {
-    console.log(customers.create);
+    console.log(createdCustomer.state);
   });
 
   return (
@@ -42,19 +42,19 @@ export default function NewCustomer() {
       <nav>
         <ul>
           <li>
-            <input type="text" placeholder="First name" value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
+            <input type="text" placeholder="First name" disabled={createdCustomer() ? true : false} value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
           </li>
           <li>
-            <input type="text" placeholder="Last name" value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
+            <input type="text" placeholder="Last name" disabled={createdCustomer() ? true : false} value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
           </li>
           <li>
-            <input type="number" placeholder="Phone" value={phone()} onInput={(e) => setPhone(e.target.value)}/>
+            <input type="number" placeholder="Phone" disabled={createdCustomer() ? true : false} value={phone()} onInput={(e) => setPhone(e.target.value)}/>
           </li>
           <li>
-            <input type="number" placeholder="Identification" value={identification()} onInput={(e) => setidentIdentification(e.target.value)}/>
+            <input type="number" placeholder="Identification" disabled={createdCustomer() ? true : false} value={identification()} onInput={(e) => setidentIdentification(e.target.value)}/>
           </li>
           <li>
-            <select required="" onChange={e => setType(e.target.value)}>
+            <select required="" disabled={createdCustomer() ? true : false} onChange={e => setType(e.target.value)}>
               <option value="" disabled="disabled" selected >Type</option>
               <option value={'p7z8l5ez9uicwju'} >New</option>
               <option value={'i9ony5vhyf5ifkc'} >Legacy</option>
@@ -66,14 +66,14 @@ export default function NewCustomer() {
           <li><button onClick={() => setPostCustomer(newCustomer())} role="button" >OK</button></li>
         </ul>
       </nav>
-      <footer>
-        <Show when={customers.create}>
+      <footer aria-busy={createdCustomer.loading ? true : false}>
+        <Show when={createdCustomer()}>
           <nav>
             <ul>
               <li>
                 <hgroup>
-                  <h4>{customers.create.name}</h4>
-                  <small>{customers.create.last}</small>
+                  <h4>{createdCustomer().name}</h4>
+                  <small>{createdCustomer().last}</small>
                 </hgroup>
               </li>
             </ul>
@@ -81,7 +81,7 @@ export default function NewCustomer() {
               <li>
                 <hgroup>
                   <h4>Phone</h4>
-                  <small>{customers.create.phone}</small>
+                  <small>{createdCustomer().phone}</small>
                 </hgroup>
               </li>
             </ul>
@@ -89,7 +89,7 @@ export default function NewCustomer() {
               <li>
                 <hgroup>
                   <h4>Identification</h4>
-                  <small>{customers.create.email}</small>
+                  <small>{createdCustomer().identification}</small>
                 </hgroup>
               </li>
             </ul>

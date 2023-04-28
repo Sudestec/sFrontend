@@ -46,7 +46,7 @@ export default function SearchCustomers() {
             </li>
             <li>
               <Show when={customers.results} fallback={<button role='button' disabled aria-busy='true' />}>
-                <button role='button' disabled>{customers.results.page}</button>
+                <button role='button' disabled aria-busy={results.loading ? true : false}>{results.loading ? '' : customers.results.page }</button>
               </Show>
             </li>
             <li>
@@ -93,8 +93,8 @@ export default function SearchCustomers() {
                 <th scope="col">Type</th>
               </tr>
             </thead>
-            <Show when={customers.results} fallback={<tbody aria-busy='true' />}>
-              <tbody>
+            <tbody>
+              <Show when={customers.results}>
                 <For each={customers.results.items}>{(customer, i) =>
                   <tr>
                     <th scope="row">{customer.name}</th>
@@ -105,8 +105,8 @@ export default function SearchCustomers() {
                     <td>{customer.type}</td>
                   </tr>
                 }</For>
-              </tbody>
-            </Show>
+              </Show>
+            </tbody>
           </table>
         </figure>
       </footer>
