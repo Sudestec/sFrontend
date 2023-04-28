@@ -32,6 +32,9 @@ export default function NewCustomer() {
   createEffect( () => {
     setCustomers('create', createdCustomer());
   });
+  createEffect( () => {
+    console.log(customers.create);
+  });
 
   return (
     <>
@@ -71,7 +74,6 @@ export default function NewCustomer() {
                 <hgroup>
                   <h4>{firstName()}</h4>
                   <small>{lastName()}</small>
-                  <small>{customers.create.name}</small>
                 </hgroup>
               </li>
             </ul>
