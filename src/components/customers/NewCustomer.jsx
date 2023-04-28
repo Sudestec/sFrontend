@@ -7,7 +7,7 @@ import capitalizeFirstLetter from '../../modules/capitalizeFirstLetter';
 
 async function fetchBackend (source) {
   const token = getLocalToken();
-  return await createCustomer(url, token, source);
+  return await createCustomer(url, token.token, source);
 }
 
 export default function NewCustomer() {
