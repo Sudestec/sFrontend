@@ -1,9 +1,9 @@
 import { lazy, Show } from 'solid-js';
+import { usePocket } from './AuthContext';
 const Nav = lazy(() => import('./Nav'));
 const Main = lazy(() => import('./Main'));
 const Footer = lazy(() => import('./Footer'));
 const Profile = lazy(() => import('./components/Profile'));
-import { usePocket } from './AuthContext';
 
 function App() {
   const [login] = usePocket();

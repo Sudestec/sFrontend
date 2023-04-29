@@ -2,11 +2,12 @@ import { createEffect, createResource, createSignal, Show, For, onMount } from '
 import { useCustomer } from './CustomerContext';
 import getCustomers from './getCustomers';
 import { url } from '../../modules/pbConnection';
-import getLocalToken from '../../modules/getLocalToken';
+import { usePocket } from '../../AuthContext';
+
 
 const fetchCustomers = async (source) => {
-  const {token} = getLocalToken();
-  return await getCustomers(url,token,source);
+  const [login] = usePocket();
+  return await getCustomers(url,login.token,source);
 };
 
 

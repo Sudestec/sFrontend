@@ -1,13 +1,14 @@
 import { createEffect, createResource, createSignal, onMount, Show, Switch, Match } from 'solid-js';
 import createCustomer from './createCustomer';
 import { url } from '../../modules/pbConnection';
-import getLocalToken from '../../modules/getLocalToken';
 import { useCustomer } from './CustomerContext';
 import capitalizeFirstLetter from '../../modules/capitalizeFirstLetter';
+import { usePocket } from '../../AuthContext';
+
 
 async function fetchBackend (source) {
-  const token = getLocalToken();
-  return await createCustomer(url, token.token, source);
+  const [login] = usePocket();
+  return await createCustomer(url, login.token, source);
 }
 
 export default function NewCustomer() {
@@ -33,7 +34,7 @@ export default function NewCustomer() {
     setCustomers('create', createdCustomer());
   });
   createEffect( () => {
-    console.log(createdCustomer.state);
+    console.log(createdCustomer());
   });
 
   return (
@@ -42,19 +43,19 @@ export default function NewCustomer() {
       <nav>
         <ul>
           <li>
-            <input type="text" placeholder="First name" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
+            <input type="text" required placeholder="First name" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
           </li>
           <li>
-            <input type="text" placeholder="Last name" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
+            <input type="text" required placeholder="Last name" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
           </li>
           <li>
-            <input type="number" placeholder="Phone" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={phone()} onInput={(e) => setPhone(e.target.value)}/>
+            <input type="number" required placeholder="Phone" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={phone()} onInput={(e) => setPhone(e.target.value)}/>
           </li>
           <li>
-            <input type="number" placeholder="Identification" disabled={createdCustomer() ? true : false} value={identification()} onInput={(e) => setidentIdentification(e.target.value)}/>
+            <input type="number" required placeholder="Identification" disabled={createdCustomer() ? true : false} value={identification()} onInput={(e) => setidentIdentification(e.target.value)}/>
           </li>
           <li>
-            <select required="" disabled={createdCustomer() ? true : false} onChange={e => setType(e.target.value)}>
+            <select required disabled={createdCustomer() ? true : false} onChange={e => setType(e.target.value)}>
               <option value="" disabled="disabled" selected >Type</option>
               <option value={'p7z8l5ez9uicwju'} >New</option>
               <option value={'i9ony5vhyf5ifkc'} >Legacy</option>
@@ -75,18 +76,11 @@ export default function NewCustomer() {
       </nav>
       <footer aria-busy={createdCustomer.loading ? true : false}>
         <Show when={createdCustomer()}>
-          <nav>
-            <ul>
-              <li>
-                <span>Customer Created</span>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <i class="fa-solid fa-check" />
-              </li>
-            </ul>
-          </nav>
+          <div class="grid">
+
+            {createdCustomer().code ? <span>{createdCustomer().message}</span> : <span>Customer Created</span>}
+            {createdCustomer().code ? <i class="fa-solid fa-xmark" /> : <i class="fa-solid fa-check" />}
+          </div>
         </Show>
       </footer>
     </>

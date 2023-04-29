@@ -10,11 +10,11 @@ export const PocketContext = createContext();
 // login maneja states {1: 'refetch', 2: 'loading', 3: 'OK', 4: 'error'}
 
 export function PocketProvider(props) {
-  const [ login, setLogin ] = createStore({state:'refetch',data: false}),
+  const [ login, setLogin ] = createStore({state:'refetch',user: false, token: false}),
     getAuthorization = async (username, password) => {
       setLogin({ state: 'loading'});
       const data = await logIn(url, username, password);
-      data.token ? setLogin({state: 'authorized', data: data}) : setLogin({state: 'error'});
+      data.token ? setLogin({state: 'authorized', user: data.record}) : setLogin({state: 'error'});
     },
     clearAuthorization = () => (sessionStorage.clear(),setLogin({state: 'refetch'})),
     authData = [
@@ -29,7 +29,7 @@ export function PocketProvider(props) {
       setLogin({ state: 'loading' });
       refreshAuthorization(url, data.token)
         .then( e => {
-          e.token ? setLogin({state: 'authorized', data: e}) : (sessionStorage.clear(),setLogin({state: 'error'}));
+          e.token ? setLogin({state: 'authorized', user: e.record, token: e.token}) : (sessionStorage.clear(),setLogin({state: 'error'}));
         });}
     else setLogin({state: 'refetch'});
   });
