@@ -19,7 +19,7 @@ export default function NewCustomer() {
   const [ type, setType ] = createSignal('');
   const [ newCustomer, setNewCustomer ] = createSignal(false);
   const [ postCustomer, setPostCustomer ] = createSignal(false);
-  const [ createdCustomer ] = createResource(postCustomer, fetchBackend);
+  const [ createdCustomer, {mutate,refetch} ] = createResource(postCustomer, fetchBackend);
 
   createEffect(() => setNewCustomer({
     name: firstName().toLowerCase(),
@@ -38,17 +38,17 @@ export default function NewCustomer() {
 
   return (
     <>
-      <span>Create</span>
+      <span>Insert new customer information:</span>
       <nav>
         <ul>
           <li>
-            <input type="text" placeholder="First name" disabled={createdCustomer() ? true : false} value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
+            <input type="text" placeholder="First name" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
           </li>
           <li>
-            <input type="text" placeholder="Last name" disabled={createdCustomer() ? true : false} value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
+            <input type="text" placeholder="Last name" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
           </li>
           <li>
-            <input type="number" placeholder="Phone" disabled={createdCustomer() ? true : false} value={phone()} onInput={(e) => setPhone(e.target.value)}/>
+            <input type="number" placeholder="Phone" disabled={(createdCustomer() || createdCustomer.loading) ? true : false} value={phone()} onInput={(e) => setPhone(e.target.value)}/>
           </li>
           <li>
             <input type="number" placeholder="Identification" disabled={createdCustomer() ? true : false} value={identification()} onInput={(e) => setidentIdentification(e.target.value)}/>
@@ -63,7 +63,14 @@ export default function NewCustomer() {
           </li>
         </ul>
         <ul>
-          <li><button onClick={() => setPostCustomer(newCustomer())} role="button" >OK</button></li>
+          <li>
+            <button role="button"
+              disabled={createdCustomer.loading ? true : false}
+              onClick={() => !createdCustomer() ? setPostCustomer(newCustomer()) : (setFirstName(''),setLastName(''),setPhone(''),setidentIdentification(''),setType(''),mutate(false))} >
+              {createdCustomer() ? <i class="fa-solid fa-arrows-rotate" /> : <i class="fa-solid fa-check" />}
+
+            </button>
+          </li>
         </ul>
       </nav>
       <footer aria-busy={createdCustomer.loading ? true : false}>
@@ -71,26 +78,12 @@ export default function NewCustomer() {
           <nav>
             <ul>
               <li>
-                <hgroup>
-                  <h4>{createdCustomer().name}</h4>
-                  <small>{createdCustomer().last}</small>
-                </hgroup>
+                <span>Customer Created</span>
               </li>
             </ul>
             <ul>
               <li>
-                <hgroup>
-                  <h4>Phone</h4>
-                  <small>{createdCustomer().phone}</small>
-                </hgroup>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <hgroup>
-                  <h4>Identification</h4>
-                  <small>{createdCustomer().identification}</small>
-                </hgroup>
+                <i class="fa-solid fa-check" />
               </li>
             </ul>
           </nav>
@@ -99,4 +92,3 @@ export default function NewCustomer() {
     </>
   );
 }
-

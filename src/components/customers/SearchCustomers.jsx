@@ -40,24 +40,30 @@ export default function SearchCustomers() {
         <Show when={customers.results} fallback={<ul><li><button role='button' aria-busy='true' disabled /></li><li><button role='button' aria-busy='true' disabled /></li><li><button role='button' aria-busy='true' disabled /></li><li><button role='button' aria-busy='true' disabled /></li></ul>}>
           <ul>
             <li>
-              <Show when={customers.results.page > 1} fallback={<button role='button' disabled><i class="fa-solid fa-arrow-left" /></button>}>
-                <button role='button' onClick={()=> setPage(customers.results.page-1)}><i class="fa-solid fa-arrow-left" /></button>
-              </Show>
+              <button role='button'
+                onClick={()=> setPage(customers.results.page-1)}
+                disabled={customers.results.page > 1? false : true}
+                aria-busy={results.loading ? true : false}>
+                {results.loading ? '' : <i class="fa-solid fa-arrow-left" /> }
+              </button>
             </li>
             <li>
-              <Show when={customers.results} fallback={<button role='button' disabled aria-busy='true' />}>
-                <button role='button' disabled aria-busy={results.loading ? true : false}>{results.loading ? '' : customers.results.page }</button>
-              </Show>
+              <button role='button' disabled aria-busy={results.loading ? true : false}>
+                {results.loading ? '' : customers.results.page }
+              </button>
             </li>
             <li>
-              <Show when={customers.results} fallback={<button role='button' disabled aria-busy='true' />}>
-                <button role='button' disabled>{customers.results.totalPages}</button>
-              </Show>
+              <button role='button' disabled>
+                {customers.results.totalPages}
+              </button>
             </li>
             <li>
-              <Show when={customers.results.page !== customers.results.totalPages} fallback={<button role='button' disabled><i class="fa-solid fa-arrow-right" /></button>}>
-                <button role='button' onClick={()=> setPage(customers.results.page+1)}><i class="fa-solid fa-arrow-right" /></button>
-              </Show>
+              <button role='button'
+                onClick={()=> setPage(customers.results.page+1)}
+                disabled={customers.results.page !== customers.results.totalPages ? false : true}
+                aria-busy={results.loading ? true : false}>
+                {results.loading ? '' : <i class="fa-solid fa-arrow-right" /> }
+              </button>
             </li>
           </ul>
 
