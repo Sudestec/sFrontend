@@ -25,8 +25,8 @@ function Nav() {
       <Logo />
       <ul>
         <Spares />
-        <Estimates />
-        <Jobs />
+        {/* <Estimates />
+        <Jobs /> */}
         <Customers/>
         <Profile />
       </ul>

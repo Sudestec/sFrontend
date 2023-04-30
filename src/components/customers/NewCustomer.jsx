@@ -1,8 +1,7 @@
-import { createEffect, createResource, createSignal, onMount, Show, Switch, Match } from 'solid-js';
+import { createEffect, createResource, createSignal, Show } from 'solid-js';
 import createCustomer from './createCustomer';
 import { url } from '../../modules/pbConnection';
 import { useCustomer } from './CustomerContext';
-import capitalizeFirstLetter from '../../modules/capitalizeFirstLetter';
 import { usePocket } from '../../AuthContext';
 
 
