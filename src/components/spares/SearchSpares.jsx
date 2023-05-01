@@ -27,7 +27,6 @@ export default function SearchSpares() {
         token: login.token
       };
       setSettings(parameters);
-      console.log('first');
     }
   });
   createEffect(() => {
