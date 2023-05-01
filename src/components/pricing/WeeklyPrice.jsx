@@ -17,7 +17,9 @@ export default function Header() {
 
   return (
     <hgroup>
-      <h1 aria-busy={weekly.loading ? true : false}>{weekly() ? priceFormatter.format(cost()) : ''}</h1>
+      <h1
+        aria-busy={weekly.loading ? true : false}
+        textContent={weekly() ? priceFormatter.format(cost()) : undefined} />
       <p>Precio base semanal</p>
     </hgroup>
   );

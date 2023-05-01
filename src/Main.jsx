@@ -4,7 +4,7 @@ const Header = lazy(() => import('./Header'));
 function Main() {
 
   return (
-    <main class='container'>
+    <main class='container' >
       <article>
         <Header/>
         <p>At Sudestec, we take great pride in providing authentic and reliable computer repair services and solutions to our clients. We are committed to delivering the highest level of quality and professionalism in all of our services.</p>

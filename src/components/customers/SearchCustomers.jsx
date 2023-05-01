@@ -49,7 +49,7 @@ export default function SearchCustomers() {
               </button>
             </li>
             <li>
-              <button role='button' disabled aria-busy={results.loading ? true : false}>
+              <button role='button' disabled aria-busy={results.loading ? true : false} >
                 {results.loading ? '' : customers.results.page }
               </button>
             </li>
@@ -104,12 +104,12 @@ export default function SearchCustomers() {
               <Show when={customers.results}>
                 <For each={customers.results.items}>{(customer, i) =>
                   <tr>
-                    <th scope="row">{customer.name}</th>
-                    <td>{customer.last}</td>
-                    <td>{customer.phone}</td>
-                    <td>{customer.email}</td>
-                    <td>{customer.identification}</td>
-                    <td>{customer.type}</td>
+                    <th scope="row" textContent={customer.name} />
+                    <td textContent={customer.last} />
+                    <td textContent={customer.phone} />
+                    <td textContent={customer.email} />
+                    <td textContent={customer.identification} />
+                    <td textContent={customer.type} />
                   </tr>
                 }</For>
               </Show>

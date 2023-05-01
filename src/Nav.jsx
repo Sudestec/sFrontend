@@ -7,7 +7,7 @@ import Logo from './Logo';
 
 function Nav() {
   return (
-    <nav class='container'>
+    <nav class='container' >
       <ul>
         <li>
           <Logo />

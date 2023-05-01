@@ -83,8 +83,6 @@ export default function SearchSpares() {
               <option value="type='gpu'">GPU</option>
             </select>
           </li>
-        </ul>
-        <ul>
           <li>
             <button onClick={()=>(setList(false),setSettings(config()))}><i class="fa-solid fa-rotate" /></button>
           </li>

@@ -1,6 +1,11 @@
 import { createStore } from 'solid-js/store';
 import { createContext, useContext, createSignal } from 'solid-js';
 
+export const TAB = Object.freeze({
+  search: Symbol(),
+  create: Symbol(),
+});
+
 const customersDefault = {
   search: {
     page: 1,
@@ -10,7 +15,7 @@ const customersDefault = {
   results: '',
   create: '',
   details: '',
-  tab: 'search',
+  tab: TAB.search,
 };
 export const CustomerContext = createContext();
 

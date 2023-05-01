@@ -9,12 +9,12 @@ function Welcome() {
     <header>
       <div class="grid">
         <hgroup>
-          <h1>{()=> capitalizeFirstLetter(login.user.lastname)}</h1>
-          <p>{()=> capitalizeFirstLetter(login.user.firstname)}</p>
-          <ul>
-            <li>{login.user.email}</li>
-            <li>{capitalizeFirstLetter(login.user.type)}</li>
-          </ul>
+          <h1 textContent={capitalizeFirstLetter(login.user.lastname)} />
+          <p textContent={capitalizeFirstLetter(login.user.firstname)} />
+        </hgroup>
+        <hgroup>
+          <h1 textContent={capitalizeFirstLetter(login.user.type)} />
+          <p textContent={capitalizeFirstLetter(login.user.email)} />
         </hgroup>
         <WeeklyPrice />
       </div>
