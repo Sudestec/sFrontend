@@ -1,5 +1,4 @@
-import { createStore } from 'solid-js/store';
-import { createContext, useContext, onMount, createSignal, createEffect } from 'solid-js';
+import { createContext, useContext } from 'solid-js';
 
 export const SpareContext = createContext();
 

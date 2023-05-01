@@ -7,16 +7,17 @@ function Welcome() {
 
   return (
     <header>
-      <nav>
-        <ul>
-          <li><button role='button' disabled>{()=> capitalizeFirstLetter(login.user.username)}</button></li>
-          <li><button role='button' disabled>{login.user.email}</button></li>
-          <li><button role='button' disabled>{capitalizeFirstLetter(login.user.type)}</button></li>
-        </ul>
-        <ul>
-          <li><button role='button' disabled><WeeklyPrice /></button></li>
-        </ul>
-      </nav>
+      <div class="grid">
+        <hgroup>
+          <h1>{()=> capitalizeFirstLetter(login.user.lastname)}</h1>
+          <p>{()=> capitalizeFirstLetter(login.user.firstname)}</p>
+          <ul>
+            <li>{login.user.email}</li>
+            <li>{capitalizeFirstLetter(login.user.type)}</li>
+          </ul>
+        </hgroup>
+        <WeeklyPrice />
+      </div>
     </header>
   );
 }

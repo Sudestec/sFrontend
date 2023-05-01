@@ -26,7 +26,7 @@ export function PocketProvider(props) {
       setLogin({ state: USER.loading });
       const data = await logIn(url, username, password);
       data.token
-        ? setLogin({ state: USER.authorized, user: data.record })
+        ? setLogin({ state: USER.authorized, user: data.record, token: data.token })
         : setLogin({ state: USER.error });
     },
     clearAuthorization = () => (

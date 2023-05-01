@@ -15,7 +15,7 @@ const getSpares = async (api, token, parameters = { page: '', perPage: '', sort:
       redirect: 'follow'
     },
     { page, perPage, sort, filter, expand } = parameters,
-    data = await fetch(`${url}/records?page=${page}&perPage=${perPage}&sort=${'-updated'+sort}&filter=${filter}&expand${expand}`, requestOptions),
+    data = await fetch(`${url}/records?page=${page}&perPage=${perPage}&sort=${'-updated'+sort}&filter=${filter}`, requestOptions),
     jsonData = await data.json(); 
   if (data.status !== 200) {
     return data.status;

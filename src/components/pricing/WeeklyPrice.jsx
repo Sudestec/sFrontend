@@ -3,7 +3,7 @@ import { url } from '../../modules/pbConnection';
 import { Show, createEffect, createResource, createSignal } from 'solid-js';
 import { usePocket } from '../../AuthContext';
 
-const priceFormatter = Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumSignificantDigits: 3 });
+export const priceFormatter = Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumSignificantDigits: 3 });
 
 export default function Header() {
   const [login] = usePocket();
@@ -16,8 +16,11 @@ export default function Header() {
   });
 
   return (
-    <Show when={weekly()}>
-      Precio base semanal: {priceFormatter.format(cost())}
-    </Show>
+    <hgroup>
+      <h1 aria-busy={weekly.loading ? true : false}>{weekly() ? priceFormatter.format(cost()) : ''}</h1>
+      <ul>
+        <li>Precio base semanal</li>
+      </ul>
+    </hgroup>
   );
 }

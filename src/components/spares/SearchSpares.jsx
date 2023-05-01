@@ -1,9 +1,9 @@
 import { createEffect, createResource, createSignal, onMount, For, Show } from 'solid-js';
 import getSpares from '../../modules/getSpares';
-import getLocalToken from '../../modules/getLocalToken';
 import { url } from '../../modules/pbConnection';
 import { downloadBill } from '../../modules/downloadBill';
-
+import { usePocket } from '../../AuthContext';
+import { priceFormatter } from '../pricing/WeeklyPrice';
 
 async function fetchData({url, token, parameters},{value}) {
   //console.log(url, token, parameters);
@@ -11,6 +11,7 @@ async function fetchData({url, token, parameters},{value}) {
 }
 
 export default function SearchSpares() {
+  const [ login ] = usePocket();
   const [settings, setSettings] = createSignal('');
   const [data, { mutate, refetch }] = createResource(settings, fetchData);
   const [list, setList] = createSignal('');
@@ -20,10 +21,10 @@ export default function SearchSpares() {
   const [config, setConfig] = createSignal('');
   
   onMount(() => {
-    if (getLocalToken()) {
+    if (login.token) {
       const parameters = {
         url: url,
-        token: getLocalToken()
+        token: login.token
       };
       setSettings(parameters);
       console.log('first');
@@ -33,7 +34,7 @@ export default function SearchSpares() {
     if (data()) {
       setConfig({
         url: url,
-        token: getLocalToken(),
+        token: login.token,
         parameters:{
           page: page(),
           perPage: items(),
@@ -111,8 +112,8 @@ export default function SearchSpares() {
                     <td>{spare.nombre}</td>
                     <td>{spare.details}</td>
                     <td>{spare.serial}</td>
-                    <td>${spare.cost}</td>
-                    <td><button role='button' onClick={()=>downloadBill(url,getLocalToken(),spare.id,spare.bill)}><i class="fa-solid fa-file-invoice" /></button></td>
+                    <td>{priceFormatter.format(spare.cost)}</td>
+                    <td><button role='button' onClick={()=>downloadBill(url,login.token,spare.id,spare.bill)}><i class="fa-solid fa-file-invoice" /></button></td>
                   </tr>
                 }</For>
               </tbody>
