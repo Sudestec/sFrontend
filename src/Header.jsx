@@ -22,7 +22,7 @@ function Welcome() {
           </li>
           <li>
             <hgroup>
-              <h3 textContent={capitalizeFirstLetter(login.user.type)} />
+              <h2 textContent={capitalizeFirstLetter(login.user.type)} />
               <p textContent={capitalizeFirstLetter(login.user.email)} />
             </hgroup>
 
