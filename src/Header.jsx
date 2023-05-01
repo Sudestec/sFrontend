@@ -1,23 +1,34 @@
+import { createEffect } from 'solid-js';
 import { usePocket } from './AuthContext';
 import capitalizeFirstLetter from './modules/capitalizeFirstLetter';
-import WeeklyPrice from './components/pricing/WeeklyPrice';
 
 function Welcome() {  
   const [login] = usePocket();
 
+  createEffect(() => {
+    console.log(login.user);
+  });
+
   return (
     <header>
-      <div class="grid">
-        <hgroup>
-          <h1 textContent={capitalizeFirstLetter(login.user.lastname)} />
-          <p textContent={capitalizeFirstLetter(login.user.firstname)} />
-        </hgroup>
-        <hgroup>
-          <h1 textContent={capitalizeFirstLetter(login.user.type)} />
-          <p textContent={capitalizeFirstLetter(login.user.email)} />
-        </hgroup>
-        <WeeklyPrice />
-      </div>
+      <nav style={{'text-align': 'center'}}>
+        <ul>
+          <li>
+            <hgroup>
+              <h2 textContent={capitalizeFirstLetter(login.user.lastname)} />
+              <p textContent={capitalizeFirstLetter(login.user.firstname)} />
+            </hgroup>
+
+          </li>
+          <li>
+            <hgroup>
+              <h3 textContent={capitalizeFirstLetter(login.user.type)} />
+              <p textContent={capitalizeFirstLetter(login.user.email)} />
+            </hgroup>
+
+          </li>
+        </ul>
+      </nav>
     </header>
   );
 }
