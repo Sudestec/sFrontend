@@ -1,15 +1,20 @@
 import { lazy } from 'solid-js';
-const Header = lazy(() => import('./Header'));
+const UserCard = lazy(() => import('./UserCard'));
 import WeeklyPrice from './components/pricing/WeeklyPrice';
 
 function Main() {
 
   return (
     <main class='container' >
-      <article>
-        <Header/>
-        <WeeklyPrice />
-      </article>
+      <div class="grid">
+        <div >
+          <UserCard/>
+        </div>
+        <div >
+          <WeeklyPrice />
+        </div>
+
+      </div>
     </main>
   );
 }

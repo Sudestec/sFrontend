@@ -1,4 +1,4 @@
-import { createEffect, createResource, createSignal, Show, For, onMount } from 'solid-js';
+import { createEffect, createResource, createSignal, Show, For } from 'solid-js';
 import { useCustomer } from './CustomerContext';
 import getCustomers from './getCustomers';
 import { url } from '../../modules/pbConnection';

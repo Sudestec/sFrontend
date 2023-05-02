@@ -3,7 +3,7 @@ import getSpares from '../../modules/getSpares';
 import { url } from '../../modules/pbConnection';
 import { downloadBill } from '../../modules/downloadBill';
 import { usePocket } from '../../AuthContext';
-import { priceFormatter } from '../pricing/WeeklyPrice';
+import {currencyFormatter} from '../../modules/formatCurrency';
 
 async function fetchData({url, token, parameters},{value}) {
   //console.log(url, token, parameters);
@@ -109,7 +109,7 @@ export default function SearchSpares() {
                     <td>{spare.nombre}</td>
                     <td>{spare.details}</td>
                     <td>{spare.serial}</td>
-                    <td>{priceFormatter.format(spare.cost)}</td>
+                    <td>{currencyFormatter.format(spare.cost)}</td>
                     <td><button role='button' onClick={()=>downloadBill(url,login.token,spare.id,spare.bill)}><i class="fa-solid fa-file-invoice" /></button></td>
                   </tr>
                 }</For>

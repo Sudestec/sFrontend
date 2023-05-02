@@ -4,6 +4,7 @@ import Jobs from './components/Jobs';
 import Estimates from './components/Estimates';
 import Spares from './components/Spares';
 import Logo from './Logo';
+import Guides from './components/guides/Guides';
 
 function Nav() {
   return (
@@ -18,6 +19,7 @@ function Nav() {
       </ul>
 
       <ul>
+        <Guides />
         <Spares />
         {/* <Estimates />
         <Jobs /> */}

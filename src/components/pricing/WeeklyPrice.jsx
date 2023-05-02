@@ -2,8 +2,8 @@ import getWeeklyCost from './getWeeklyCost';
 import { url } from '../../modules/pbConnection';
 import { Show, createEffect, createResource, createSignal } from 'solid-js';
 import { usePocket } from '../../AuthContext';
-
-export const priceFormatter = Intl.NumberFormat('es-AR', { style: 'currency', currency: 'ARS', maximumSignificantDigits: 3, roundingMode: 'ceil' });
+import formatDate from '../../modules/formatDate';
+import {currencyFormatter} from '../../modules/formatCurrency';
 
 export default function Header() {
   const [login] = usePocket();
@@ -16,11 +16,19 @@ export default function Header() {
   });
 
   return (
-    <hgroup>
-      <h1
-        aria-busy={weekly.loading ? true : false}
-        textContent={weekly() ? priceFormatter.format(cost()) : undefined} />
-      <p>Precio base semanal</p>
-    </hgroup>
+    <article aria-busy={weekly.loading ? true : false}>
+      <Show when={weekly()}>
+        <header>
+          <hgroup>
+            <h2 textContent={currencyFormatter.format(cost())} />
+            <p>Precio base semanal</p>
+          </hgroup>
+        </header>
+        <ul>
+          <p>Última actualización</p>
+          <li textContent={formatDate(weekly().items[0].updated) } />
+        </ul>
+      </Show>
+    </article>
   );
 }
