@@ -23,6 +23,10 @@ export default function Header() {
             <h2 textContent={currencyFormatter.format(cost())} />
             <p>Precio base semanal</p>
           </hgroup>
+          <hgroup>
+            <h2 textContent={currencyFormatter.format(cost()*0.90)} />
+            <p>Precio familiar</p>
+          </hgroup>
         </header>
         <ul>
           <p>Última actualización</p>
