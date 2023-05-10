@@ -3,12 +3,6 @@ const getCustomers = async (api, token, parameters = { page: '', perPage: '', so
     myHeaders = new Headers();
   myHeaders.append('Authorization', `Bearer ${token}`);
 
-  const params = new Request(api, {
-    method: 'GET',
-    headers: myHeaders,
-    redirect: 'follow'
-  });
-
   const requestOptions = {
       method: 'GET',
       headers: myHeaders,
