@@ -1,17 +1,17 @@
-import { createEffect, createResource, createSignal, onMount, Show, Switch, Match } from 'solid-js';
+import { createEffect, createResource, createSignal, Show } from 'solid-js';
 import createCustomer from './createCustomer';
 import { url } from '../../modules/pbConnection';
-import getLocalToken from '../../modules/getLocalToken';
 import { useCustomer } from './CustomerContext';
-import capitalizeFirstLetter from '../../modules/capitalizeFirstLetter';
+import { usePocket } from '../../AuthContext';
+
 
 async function fetchBackend (source) {
-  const token = getLocalToken();
-  return await createCustomer(url, token, source);
+  const [login] = usePocket();
+  return await createCustomer(url, login.token, source);
 }
 
 export default function NewCustomer() {
-  const { setCustomers } = useCustomer();
+  const { customers,setCustomers } = useCustomer();
   const [ firstName, setFirstName ] = createSignal('');
   const [ lastName, setLastName ] = createSignal('');
   const [ phone, setPhone ] = createSignal('');
@@ -19,7 +19,7 @@ export default function NewCustomer() {
   const [ type, setType ] = createSignal('');
   const [ newCustomer, setNewCustomer ] = createSignal(false);
   const [ postCustomer, setPostCustomer ] = createSignal(false);
-  const [ createdCustomer ] = createResource(postCustomer, fetchBackend);
+  const [ createdCustomer, {mutate,refetch} ] = createResource(postCustomer, fetchBackend);
 
   createEffect(() => setNewCustomer({
     name: firstName().toLowerCase(),
@@ -35,65 +35,66 @@ export default function NewCustomer() {
 
   return (
     <>
-      <span>Create</span>
+      <span>Insert new customer information:</span>
       <nav>
         <ul>
           <li>
-            <input type="text" placeholder="First name" value={firstName()} onInput={(e) => setFirstName(e.target.value)}/>
+            <input type="text" required placeholder="First name"
+              disabled={(createdCustomer() || createdCustomer.loading) ? true : false}
+              value={firstName()}
+              onInput={ (e) => setFirstName(e.target.value)} />
           </li>
           <li>
-            <input type="text" placeholder="Last name" value={lastName()} onInput={(e) => setLastName(e.target.value)}/>
+            <input type="text" required placeholder="Last name"
+              disabled={(createdCustomer() || createdCustomer.loading) ? true : false}
+              value={lastName()}
+              onInput={ (e) => setLastName(e.target.value)} />
           </li>
           <li>
-            <input type="number" placeholder="Phone" value={phone()} onInput={(e) => setPhone(e.target.value)}/>
+            <input type="number" required placeholder="Phone"
+              disabled={(createdCustomer() || createdCustomer.loading) ? true : false}
+              value={phone()}
+              onInput={ (e) => setPhone(e.target.value)} />
           </li>
           <li>
-            <input type="number" placeholder="Identification" value={identification()} onInput={(e) => setidentIdentification(e.target.value)}/>
+            <input type="number" required placeholder="Identification"
+              disabled={createdCustomer() ? true : false}
+              value={identification()}
+              onInput={(e) => setidentIdentification(e.target.value)}/>
           </li>
+        </ul>
+        <ul>
           <li>
-            <select required="" onChange={e => setType(e.target.value)}>
+            <select required disabled={createdCustomer() ? true : false} onChange={e => setType(e.target.value)}>
               <option value="" disabled="disabled" selected >Type</option>
               <option value={'p7z8l5ez9uicwju'} >New</option>
               <option value={'i9ony5vhyf5ifkc'} >Legacy</option>
               <option value={'9pvx56lvhsr9myk'} >Returning</option>
             </select>
           </li>
-        </ul>
-        <ul>
-          <li><button onClick={() => setPostCustomer(newCustomer())} role="button" >OK</button></li>
+          <li>
+            <button role="button"
+              disabled={createdCustomer.loading ? true : false}
+              onClick={() => !createdCustomer() ? setPostCustomer(newCustomer()) : (setFirstName(''),setLastName(''),setPhone(''),setidentIdentification(''),setType(''),mutate(false))} >
+              {createdCustomer() ? <i class="fa-solid fa-arrows-rotate" /> : <i class="fa-solid fa-check" />}
+            </button>
+          </li>
         </ul>
       </nav>
-      <footer>
+      <footer aria-busy={createdCustomer.loading ? true : false}>
         <Show when={createdCustomer()}>
-          <nav>
-            <ul>
-              <li>
-                <hgroup>
-                  <h4>{capitalizeFirstLetter(() => createdCustomer().name)}</h4>
-                  <small>{capitalizeFirstLetter(() => createdCustomer().last)}</small>
-                </hgroup>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <hgroup>
-                  <h4>Phone</h4>
-                  <small>{() => createdCustomer().phone}</small>
-                </hgroup>
-              </li>
-            </ul>
-            <ul>
-              <li>
-                <hgroup>
-                  <h4>Identification</h4>
-                  <small>{() => createdCustomer().identification}</small>
-                </hgroup>
-              </li>
-            </ul>
-          </nav>
+          <div class="grid">
+            <span textContent={
+              createdCustomer().code
+                ? createdCustomer().message
+                : 'Customer created'} />
+            <i class={
+              createdCustomer().code
+                ? 'fa-solid fa-xmark'
+                : 'fa-solid fa-check'}/>
+          </div>
         </Show>
       </footer>
     </>
   );
 }
-

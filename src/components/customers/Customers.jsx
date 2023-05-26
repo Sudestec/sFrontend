@@ -1,5 +1,5 @@
 import { createSignal, Show, Switch, Match } from 'solid-js';
-import { CustomerProvider, useCustomer } from './CustomerContext';
+import { CustomerProvider, useCustomer, TAB } from './CustomerContext';
 import SearchCustomers from './SearchCustomers';
 import NewCustomer from './NewCustomer';
 
@@ -10,7 +10,7 @@ function CustomersWindow() {
 
   return (
     <dialog open>
-      <article style={{'min-width': '90vmin'}}>
+      <article style={{'min-width': '80vw'}}>
         <header>
           <nav>
             <ul>
@@ -23,19 +23,19 @@ function CustomersWindow() {
             </ul>
             <ul>
               <li>
-                <button data-tooltip="New" role="button" onClick={() => setCustomers({tab:'create'})}><i class="fa-solid fa-plus" /></button>
+                <button data-tooltip="New" role="button" onClick={() => setCustomers({tab:TAB.create})}><i class="fa-solid fa-plus" /></button>
               </li>
               <li>
-                <button data-tooltip="Search" role="button" onClick={() => setCustomers({tab:'search'})}><i class="fa-solid fa-magnifying-glass" /></button>
+                <button data-tooltip="Search" role="button" onClick={() => setCustomers({tab:TAB.search})}><i class="fa-solid fa-magnifying-glass" /></button>
               </li>
             </ul>
           </nav>
         </header>
         <Switch fallback={<p aria-busy='true' />}> 
-          <Match when={customers.tab ==='search'}>
+          <Match when={customers.tab === TAB.search}>
             <SearchCustomers />
           </Match>
-          <Match when={customers.tab ==='create'}>
+          <Match when={customers.tab === TAB.create}>
             <NewCustomer />
           </Match>
         </Switch>
