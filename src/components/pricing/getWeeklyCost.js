@@ -7,7 +7,7 @@ const getWeeklyCost = async (url, token) => {
       headers: myHeaders,
       redirect: 'follow'
     },
-    response = await fetch('https://api.sudeste.ar/api/collections/pricing/records?filter=period=\'Weekly\'&sort=-updated&perPage=1', requestOptions);
+    response = await fetch('api/collections/weekly_rate/records', requestOptions);
 
   return await response.json(); 
 };
