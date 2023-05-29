@@ -7,7 +7,7 @@ import {currencyFormatter} from '../../modules/formatCurrency';
 
 export default function Header() {
   const [login] = usePocket();
-  const [weekly] = createResource(() => getWeeklyCost(url,login.token));
+  const [weekly] = createResource(() => getWeeklyCost(url));
   const [cost, setCost] = createSignal(false);
 
   createEffect(() => {
@@ -30,7 +30,7 @@ export default function Header() {
         </header>
         <ul>
           <p>Última actualización</p>
-          <li textContent={formatDate(weekly().items[0].updated) } />
+          <li textContent={formatDate(weekly().items[0].created) } />
         </ul>
       </Show>
     </article>

@@ -13,9 +13,8 @@ export default function UserCard() {
           <p textContent={capitalizeFirstLetter(login.user.firstname)} />
         </hgroup>
       </header>
-      <p textContent={capitalizeFirstLetter(login.user.type)} />
       <ul>
-        <li textContent={capitalizeFirstLetter(login.user.email)} />
+        <li textContent={login.user.email} />
       </ul>
 
     </article>
